@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Terminal, Github, Zap } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -36,9 +37,11 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity glow-primary px-8 h-12 text-base">
-              <Terminal className="mr-2 h-5 w-5" />
-              Get Started
+            <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity glow-primary px-8 h-12 text-base" asChild>
+              <Link to="/docs/installation">
+                <Terminal className="mr-2 h-5 w-5" />
+                Get Started
+              </Link>
             </Button>
             <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10 px-8 h-12 text-base" asChild>
               <a href="https://github.com/TheFlashCodes/FKvim" target="_blank" rel="noopener noreferrer">

@@ -20,15 +20,15 @@ const Navbar = () => {
             <Link to="/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Home
             </Link>
-            <a href="#features" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            <a href="/#features" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Features
             </a>
-            <a href="#installation" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            <a href="/#installation" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Installation
             </a>
-            <a href="https://github.com/TheFlashCodes/FKvim" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            <Link to="/docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Docs
-            </a>
+            </Link>
           </div>
 
           <div className="flex items-center gap-4">
@@ -38,7 +38,7 @@ const Navbar = () => {
               </a>
             </Button>
             <Button asChild className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity">
-              <a href="#installation">Get Started</a>
+              <Link to="/docs/installation">Get Started</Link>
             </Button>
           </div>
         </div>
