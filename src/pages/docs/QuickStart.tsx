@@ -1,5 +1,6 @@
 import DocsLayout from "@/components/DocsLayout";
 import TableOfContents from "@/components/TableOfContents";
+import TerminalCodeBlock from "@/components/TerminalCodeBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Zap, Terminal, Rocket } from "lucide-react";
 
@@ -38,21 +39,17 @@ const QuickStart = () => {
                 install all required plugins. This may take a minute or two.
               </p>
 
-              <Card className="bg-card/50 border-border">
-                <CardContent className="p-6 space-y-3">
-                  <div className="bg-background/50 p-4 rounded-lg">
-                    <pre className="text-sm font-mono">
-{`# Launch Neovim
+              <TerminalCodeBlock 
+                code={`# Launch Neovim
 nvim
 
 # Wait for plugins to install
 # Once complete, quit and restart
 :q
 nvim`}
-                    </pre>
-                  </div>
-                </CardContent>
-              </Card>
+                language="bash"
+                filename="bash"
+              />
             </section>
 
             <section id="basic-workflow" className="space-y-4">
@@ -140,9 +137,11 @@ nvim`}
                     <h3 className="text-lg font-semibold flex items-center gap-2">
                       <span className="text-primary">🎨</span> FkThemes
                     </h3>
-                    <div className="bg-background/50 p-3 rounded">
-                      <code className="text-sm">:FkThemePicker</code>
-                    </div>
+                    <TerminalCodeBlock 
+                      code=":FkThemePicker"
+                      language="vim"
+                      filename="neovim"
+                    />
                     <p className="text-sm text-muted-foreground">
                       Open the theme picker and preview different colorschemes
                     </p>
@@ -154,9 +153,11 @@ nvim`}
                     <h3 className="text-lg font-semibold flex items-center gap-2">
                       <span className="text-secondary">📝</span> FkNotes
                     </h3>
-                    <div className="bg-background/50 p-3 rounded">
-                      <code className="text-sm">:FkNotes</code>
-                    </div>
+                    <TerminalCodeBlock 
+                      code=":FkNotes"
+                      language="vim"
+                      filename="neovim"
+                    />
                     <p className="text-sm text-muted-foreground">
                       Access your notes and tasks directly from the editor
                     </p>

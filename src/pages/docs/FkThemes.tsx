@@ -1,8 +1,8 @@
 import DocsLayout from "@/components/DocsLayout";
 import TableOfContents from "@/components/TableOfContents";
+import TerminalCodeBlock from "@/components/TerminalCodeBlock";
 import { Card, CardContent } from "@/components/ui/card";
-import { Palette, Sparkles, Eye, Zap } from "lucide-react";
-import { ExternalLink } from "lucide-react";
+import { Palette, Sparkles, Eye, Zap, ExternalLink } from "lucide-react";
 
 const tocItems = [
   { id: "overview", title: "Overview", level: 2 },
@@ -102,18 +102,18 @@ const FkThemes = () => {
               <p className="text-muted-foreground leading-relaxed">
                 FkThemes comes pre-installed with FKvim. If you need to install it separately:
               </p>
-              <div className="bg-card/50 border border-border rounded-lg p-4">
-                <pre className="text-sm font-mono text-foreground overflow-x-auto">
-                  <code>{`-- Using lazy.nvim
+              <TerminalCodeBlock 
+                code={`-- Using lazy.nvim
 {
   "flashcodes-themayankjha/fkthemes.nvim",
   dependencies = { "nvim-telescope/telescope.nvim" },
   config = function()
     require("fkthemes").setup()
   end
-}`}</code>
-                </pre>
-              </div>
+}`}
+                language="lua"
+                filename="lua/plugins/fkthemes.lua"
+              />
             </section>
 
             <section id="usage" className="space-y-4">
@@ -122,20 +122,21 @@ const FkThemes = () => {
                 <p className="text-muted-foreground leading-relaxed">
                   Open the theme picker with:
                 </p>
-                <div className="bg-card/50 border border-border rounded-lg p-4">
-                  <code className="text-sm font-mono text-primary">:FkThemes</code>
-                </div>
+                <TerminalCodeBlock 
+                  code=":FkThemes"
+                  language="vim"
+                  filename="neovim"
+                />
                 <p className="text-muted-foreground leading-relaxed">
-                  Or use the default keybinding: <code className="text-sm font-mono text-primary bg-card/50 px-2 py-1 rounded">&lt;leader&gt;th</code>
+                  Or use the default keybinding: <code className="text-sm font-mono text-primary bg-card/50 px-2 py-1 rounded">&lt;Leader&gt;th</code>
                 </p>
               </div>
             </section>
 
             <section id="configuration" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">Configuration</h2>
-              <div className="bg-card/50 border border-border rounded-lg p-4">
-                <pre className="text-sm font-mono text-foreground overflow-x-auto">
-                  <code>{`require("fkthemes").setup({
+              <TerminalCodeBlock 
+                code={`require("fkthemes").setup({
   -- Enable live preview
   live_preview = true,
   
@@ -149,9 +150,10 @@ const FkThemes = () => {
     "gruvbox",
     "nord",
   }
-})`}</code>
-                </pre>
-              </div>
+})`}
+                language="lua"
+                filename="lua/plugins/fkthemes.lua"
+              />
             </section>
           </div>
         </div>

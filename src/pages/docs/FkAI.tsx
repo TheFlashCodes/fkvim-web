@@ -1,5 +1,6 @@
 import DocsLayout from "@/components/DocsLayout";
 import TableOfContents from "@/components/TableOfContents";
+import TerminalCodeBlock from "@/components/TerminalCodeBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Brain, Code2, MessageSquare, Sparkles } from "lucide-react";
 
@@ -92,9 +93,8 @@ const FkAI = () => {
               <p className="text-muted-foreground leading-relaxed">
                 FkAI comes pre-configured with FKvim. For standalone installation:
               </p>
-              <div className="bg-card/50 border border-border rounded-lg p-4">
-                <pre className="text-sm font-mono text-foreground overflow-x-auto">
-                  <code>{`-- Using lazy.nvim
+              <TerminalCodeBlock 
+                code={`-- Using lazy.nvim
 {
   "flashcodes-themayankjha/fkai.nvim",
   dependencies = { "nvim-lua/plenary.nvim" },
@@ -103,16 +103,16 @@ const FkAI = () => {
       api_key = vim.env.OPENAI_API_KEY,
     })
   end
-}`}</code>
-                </pre>
-              </div>
+}`}
+                language="lua"
+                filename="lua/plugins/fkai.lua"
+              />
             </section>
 
             <section id="configuration" className="space-y-4">
               <h2 className="text-3xl font-bold text-foreground">Configuration</h2>
-              <div className="bg-card/50 border border-border rounded-lg p-4">
-                <pre className="text-sm font-mono text-foreground overflow-x-auto">
-                  <code>{`require("fkai").setup({
+              <TerminalCodeBlock 
+                code={`require("fkai").setup({
   -- API Configuration
   api_key = vim.env.OPENAI_API_KEY,
   model = "gpt-4",
@@ -130,9 +130,10 @@ const FkAI = () => {
     explain = "<leader>ae",
     refactor = "<leader>ar",
   }
-})`}</code>
-                </pre>
-              </div>
+})`}
+                language="lua"
+                filename="lua/plugins/fkai.lua"
+              />
             </section>
 
             <section id="usage" className="space-y-4">
@@ -143,9 +144,11 @@ const FkAI = () => {
                   <p className="text-muted-foreground mb-2">
                     Type a comment describing what you want, then:
                   </p>
-                  <div className="bg-card/50 border border-border rounded-lg p-4">
-                    <code className="text-sm font-mono text-primary">:FkAI generate</code>
-                  </div>
+                  <TerminalCodeBlock 
+                    code=":FkAI generate"
+                    language="vim"
+                    filename="neovim"
+                  />
                 </div>
                 
                 <div>
@@ -153,9 +156,11 @@ const FkAI = () => {
                   <p className="text-muted-foreground mb-2">
                     Select code in visual mode, then:
                   </p>
-                  <div className="bg-card/50 border border-border rounded-lg p-4">
-                    <code className="text-sm font-mono text-primary">:FkAI explain</code>
-                  </div>
+                  <TerminalCodeBlock 
+                    code=":FkAI explain"
+                    language="vim"
+                    filename="neovim"
+                  />
                 </div>
 
                 <div>
@@ -163,9 +168,11 @@ const FkAI = () => {
                   <p className="text-muted-foreground mb-2">
                     Select code and get refactoring suggestions:
                   </p>
-                  <div className="bg-card/50 border border-border rounded-lg p-4">
-                    <code className="text-sm font-mono text-primary">:FkAI refactor</code>
-                  </div>
+                  <TerminalCodeBlock 
+                    code=":FkAI refactor"
+                    language="vim"
+                    filename="neovim"
+                  />
                 </div>
               </div>
             </section>

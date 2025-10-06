@@ -1,5 +1,6 @@
 import DocsLayout from "@/components/DocsLayout";
 import TableOfContents from "@/components/TableOfContents";
+import TerminalCodeBlock from "@/components/TerminalCodeBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Play, Terminal, FileCode, Zap } from "lucide-react";
 
@@ -92,17 +93,17 @@ const FkRunner = () => {
               <p className="text-muted-foreground leading-relaxed">
                 FkRunner comes pre-installed with FKvim. For standalone installation:
               </p>
-              <div className="bg-card/50 border border-border rounded-lg p-4">
-                <pre className="text-sm font-mono text-foreground overflow-x-auto">
-                  <code>{`-- Using lazy.nvim
+              <TerminalCodeBlock 
+                code={`-- Using lazy.nvim
 {
   "flashcodes-themayankjha/fkrunner.nvim",
   config = function()
     require("fkrunner").setup()
   end
-}`}</code>
-                </pre>
-              </div>
+}`}
+                language="lua"
+                filename="lua/plugins/fkrunner.lua"
+              />
             </section>
 
             <section id="usage" className="space-y-4">
@@ -110,9 +111,11 @@ const FkRunner = () => {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Run Current File</h3>
-                  <div className="bg-card/50 border border-border rounded-lg p-4">
-                    <code className="text-sm font-mono text-primary">:FkRun file</code>
-                  </div>
+                  <TerminalCodeBlock 
+                    code=":FkRun file"
+                    language="vim"
+                    filename="neovim"
+                  />
                   <p className="text-muted-foreground mt-2">
                     Or use keybinding: <code className="text-sm font-mono text-primary bg-card/50 px-2 py-1 rounded">&lt;leader&gt;rf</code>
                   </p>
@@ -123,9 +126,11 @@ const FkRunner = () => {
                   <p className="text-muted-foreground mb-2">
                     Select code in visual mode, then:
                   </p>
-                  <div className="bg-card/50 border border-border rounded-lg p-4">
-                    <code className="text-sm font-mono text-primary">:FkRun selection</code>
-                  </div>
+                  <TerminalCodeBlock 
+                    code=":FkRun selection"
+                    language="vim"
+                    filename="neovim"
+                  />
                   <p className="text-muted-foreground mt-2">
                     Or use: <code className="text-sm font-mono text-primary bg-card/50 px-2 py-1 rounded">&lt;leader&gt;rs</code>
                   </p>
@@ -133,9 +138,11 @@ const FkRunner = () => {
 
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Run Tests</h3>
-                  <div className="bg-card/50 border border-border rounded-lg p-4">
-                    <code className="text-sm font-mono text-primary">:FkRun test</code>
-                  </div>
+                  <TerminalCodeBlock 
+                    code=":FkRun test"
+                    language="vim"
+                    filename="neovim"
+                  />
                   <p className="text-muted-foreground mt-2">
                     Keybinding: <code className="text-sm font-mono text-primary bg-card/50 px-2 py-1 rounded">&lt;leader&gt;rt</code>
                   </p>

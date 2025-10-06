@@ -1,7 +1,8 @@
 import DocsLayout from "@/components/DocsLayout";
 import TableOfContents from "@/components/TableOfContents";
+import TerminalCodeBlock from "@/components/TerminalCodeBlock";
 import { Card, CardContent } from "@/components/ui/card";
-import { Settings, Folder, FileCode } from "lucide-react";
+import { Settings, Folder } from "lucide-react";
 
 const tocItems = [
   { id: "structure", title: "Configuration Structure", level: 2 },
@@ -31,10 +32,8 @@ const Configuration = () => {
                 FKvim uses a modular configuration structure for easy customization and maintenance:
               </p>
 
-              <Card className="bg-card/50 border-border">
-                <CardContent className="p-6">
-                  <pre className="text-sm font-mono overflow-x-auto">
-{`~/.config/nvim/
+              <TerminalCodeBlock 
+                code={`~/.config/nvim/
 ├── init.lua              # Entry point
 ├── lua/
 │   ├── core/
@@ -49,9 +48,9 @@ const Configuration = () => {
 │   │   └── ...           # Other plugins
 │   └── utils/            # Utility functions
 └── README.md`}
-                  </pre>
-                </CardContent>
-              </Card>
+                language="bash"
+                filename="directory structure"
+              />
             </section>
 
             <section id="customization" className="space-y-4">
@@ -69,17 +68,17 @@ const Configuration = () => {
                         <p className="text-sm text-muted-foreground mb-3">
                           Customize core Neovim settings in <code className="bg-muted px-2 py-1 rounded">lua/core/options.lua</code>
                         </p>
-                        <div className="bg-background/50 p-4 rounded-lg">
-                          <pre className="text-xs font-mono overflow-x-auto">
-{`-- lua/core/options.lua
+                        <TerminalCodeBlock 
+                          code={`-- lua/core/options.lua
 vim.opt.number = true          -- Show line numbers
 vim.opt.relativenumber = true  -- Relative line numbers
 vim.opt.tabstop = 2           -- Tab width
 vim.opt.shiftwidth = 2        -- Indent width
 vim.opt.expandtab = true      -- Use spaces instead of tabs
 vim.opt.smartindent = true    -- Smart auto-indenting`}
-                          </pre>
-                        </div>
+                          language="lua"
+                          filename="lua/core/options.lua"
+                        />
                       </div>
                     </div>
                   </CardContent>
@@ -96,9 +95,8 @@ vim.opt.smartindent = true    -- Smart auto-indenting`}
                         <p className="text-sm text-muted-foreground mb-3">
                           Configure individual plugins in their respective files under <code className="bg-muted px-2 py-1 rounded">lua/plugins/</code>
                         </p>
-                        <div className="bg-background/50 p-4 rounded-lg">
-                          <pre className="text-xs font-mono overflow-x-auto">
-{`-- lua/plugins/fkthemes.lua
+                        <TerminalCodeBlock 
+                          code={`-- lua/plugins/fkthemes.lua
 return {
   "flashcodes-themayankjha/fkthemes.nvim",
   config = function()
@@ -109,8 +107,9 @@ return {
     })
   end,
 }`}
-                          </pre>
-                        </div>
+                          language="lua"
+                          filename="lua/plugins/fkthemes.lua"
+                        />
                       </div>
                     </div>
                   </CardContent>
@@ -130,12 +129,12 @@ return {
                   <p className="text-sm text-muted-foreground">
                     The leader key is set to <code className="bg-muted px-2 py-1 rounded">Space</code> by default
                   </p>
-                  <div className="bg-background/50 p-4 rounded-lg">
-                    <pre className="text-xs font-mono">
-{`vim.g.mapleader = " "
+                  <TerminalCodeBlock 
+                    code={`vim.g.mapleader = " "
 vim.g.maplocalleader = " "`}
-                    </pre>
-                  </div>
+                    language="lua"
+                    filename="lua/core/keymaps.lua"
+                  />
                 </CardContent>
               </Card>
 
@@ -174,11 +173,8 @@ vim.g.maplocalleader = " "`}
                 Customize the look and feel of your editor with these settings:
               </p>
 
-              <Card className="bg-card/50 border-border">
-                <CardContent className="p-6">
-                  <div className="bg-background/50 p-4 rounded-lg">
-                    <pre className="text-xs font-mono overflow-x-auto">
-{`-- Transparency
+              <TerminalCodeBlock 
+                code={`-- Transparency
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
@@ -193,10 +189,9 @@ vim.opt.cursorline = true
 
 -- Color column
 vim.opt.colorcolumn = "80"`}
-                    </pre>
-                  </div>
-                </CardContent>
-              </Card>
+                language="lua"
+                filename="lua/core/options.lua"
+              />
 
               <div className="bg-primary/10 border-l-4 border-primary p-4 rounded-r-lg">
                 <p className="text-sm">

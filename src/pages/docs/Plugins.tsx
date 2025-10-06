@@ -1,5 +1,6 @@
 import DocsLayout from "@/components/DocsLayout";
 import TableOfContents from "@/components/TableOfContents";
+import TerminalCodeBlock from "@/components/TerminalCodeBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Palette, StickyNote, Sparkles, Play, Package } from "lucide-react";
 
@@ -79,17 +80,16 @@ const Plugins = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-background/50 p-4 rounded-lg">
-                    <p className="text-xs font-semibold mb-2">Usage Example:</p>
-                    <pre className="text-xs font-mono">
-{`:FkThemePicker          -- Open theme picker
+                  <TerminalCodeBlock 
+                    code={`:FkThemePicker          -- Open theme picker
 :FkTheme catppuccin    -- Set specific theme
 :FkThemeToggle         -- Toggle between themes`}
-                    </pre>
-                  </div>
+                    language="vim"
+                    filename="neovim"
+                  />
 
                   <a
-                    href="/docs/fkthemes"
+                    href="/docs/plugins/fkthemes"
                     className="inline-block text-sm text-primary hover:text-secondary transition-colors"
                   >
                     Read full documentation →
@@ -142,17 +142,16 @@ const Plugins = () => {
                     </ul>
                   </div>
 
-                  <div className="bg-background/50 p-4 rounded-lg">
-                    <p className="text-xs font-semibold mb-2">Usage Example:</p>
-                    <pre className="text-xs font-mono">
-{`:FkNotes              -- Open notes interface
+                  <TerminalCodeBlock 
+                    code={`:FkNotes              -- Open notes interface
 :FkNotesNew           -- Create new note
 :FkNotesSearch        -- Search notes`}
-                    </pre>
-                  </div>
+                    language="vim"
+                    filename="neovim"
+                  />
 
                   <a
-                    href="/docs/fknotes"
+                    href="/docs/plugins/fknotes"
                     className="inline-block text-sm text-primary hover:text-secondary transition-colors"
                   >
                     Read full documentation →
@@ -202,7 +201,7 @@ const Plugins = () => {
                   </div>
 
                   <a
-                    href="/docs/fkai"
+                    href="/docs/plugins/fkai"
                     className="inline-block text-sm text-primary hover:text-secondary transition-colors"
                   >
                     Read full documentation →
@@ -251,7 +250,7 @@ const Plugins = () => {
                   </div>
 
                   <a
-                    href="/docs/fkrunner"
+                    href="/docs/plugins/fkrunner"
                     className="inline-block text-sm text-primary hover:text-secondary transition-colors"
                   >
                     Read full documentation →

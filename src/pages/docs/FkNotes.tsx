@@ -1,5 +1,6 @@
 import DocsLayout from "@/components/DocsLayout";
 import TableOfContents from "@/components/TableOfContents";
+import TerminalCodeBlock from "@/components/TerminalCodeBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { FileText, CheckSquare, Search, FolderTree } from "lucide-react";
 
@@ -92,18 +93,18 @@ const FkNotes = () => {
               <p className="text-muted-foreground leading-relaxed">
                 FkNotes comes pre-installed with FKvim. For standalone installation:
               </p>
-              <div className="bg-card/50 border border-border rounded-lg p-4">
-                <pre className="text-sm font-mono text-foreground overflow-x-auto">
-                  <code>{`-- Using lazy.nvim
+              <TerminalCodeBlock 
+                code={`-- Using lazy.nvim
 {
   "flashcodes-themayankjha/fknotes.nvim",
   dependencies = { "nvim-telescope/telescope.nvim" },
   config = function()
     require("fknotes").setup()
   end
-}`}</code>
-                </pre>
-              </div>
+}`}
+                language="lua"
+                filename="lua/plugins/fknotes.lua"
+              />
             </section>
 
             <section id="usage" className="space-y-4">
@@ -111,23 +112,29 @@ const FkNotes = () => {
               <div className="space-y-4">
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Create a New Note</h3>
-                  <div className="bg-card/50 border border-border rounded-lg p-4">
-                    <code className="text-sm font-mono text-primary">:FkNote new</code>
-                  </div>
+                  <TerminalCodeBlock 
+                    code=":FkNote new"
+                    language="vim"
+                    filename="neovim"
+                  />
                 </div>
                 
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Search Notes</h3>
-                  <div className="bg-card/50 border border-border rounded-lg p-4">
-                    <code className="text-sm font-mono text-primary">:FkNote search</code>
-                  </div>
+                  <TerminalCodeBlock 
+                    code=":FkNote search"
+                    language="vim"
+                    filename="neovim"
+                  />
                 </div>
 
                 <div>
                   <h3 className="text-lg font-semibold text-foreground mb-2">Toggle Todo</h3>
-                  <div className="bg-card/50 border border-border rounded-lg p-4">
-                    <code className="text-sm font-mono text-primary">:FkNote toggle</code>
-                  </div>
+                  <TerminalCodeBlock 
+                    code=":FkNote toggle"
+                    language="vim"
+                    filename="neovim"
+                  />
                 </div>
               </div>
             </section>
