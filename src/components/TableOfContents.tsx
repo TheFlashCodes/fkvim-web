@@ -45,20 +45,20 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
   };
 
   return (
-    <aside className="hidden xl:block w-64 border-l border-border bg-card/30 backdrop-blur-sm h-[calc(100vh-4rem)] sticky top-16">
-      <div className="p-6 space-y-4 overflow-y-auto h-full">
+    <aside className="hidden xl:block w-64 bg-card/30 backdrop-blur-sm sticky top-16 h-[calc(100vh-4rem)] overflow-hidden">
+      <div className="p-6 space-y-4 h-full overflow-y-auto">
         <h3 className="text-sm font-semibold uppercase tracking-wider text-foreground">On this page</h3>
-        <ul className="space-y-3 text-sm border-l-2 border-border">
+        <ul className="space-y-3 text-sm">
           {items.map((item) => (
             <li
               key={item.id}
-              style={{ paddingLeft: `${(item.level - 2) * 12 + 16}px` }}
+              style={{ paddingLeft: `${(item.level - 2) * 16}px` }}
               className="relative"
             >
               <button
                 onClick={() => scrollToSection(item.id)}
                 className={cn(
-                  "text-left w-full hover:text-primary transition-all duration-200 flex items-center gap-2 group relative",
+                  "text-left w-full hover:text-primary transition-all duration-200 flex items-center gap-3 group relative",
                   activeId === item.id
                     ? "text-primary font-medium"
                     : "text-muted-foreground"
@@ -66,7 +66,7 @@ const TableOfContents = ({ items }: TableOfContentsProps) => {
               >
                 <span 
                   className={cn(
-                    "absolute -left-[17px] w-2 h-2 rounded-full transition-all duration-200",
+                    "w-1.5 h-1.5 rounded-full transition-all duration-200 flex-shrink-0",
                     activeId === item.id
                       ? "bg-primary scale-100"
                       : "bg-muted-foreground/40 scale-75 group-hover:scale-90 group-hover:bg-primary/60"

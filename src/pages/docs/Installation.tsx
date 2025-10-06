@@ -1,9 +1,8 @@
 import DocsLayout from "@/components/DocsLayout";
 import TableOfContents from "@/components/TableOfContents";
+import TerminalCodeBlock from "@/components/TerminalCodeBlock";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Copy, Check, AlertTriangle, CheckCircle } from "lucide-react";
-import { useState } from "react";
+import { AlertTriangle, CheckCircle } from "lucide-react";
 
 const tocItems = [
   { id: "prerequisites", title: "Prerequisites", level: 2 },
@@ -15,34 +14,6 @@ const tocItems = [
   { id: "troubleshooting", title: "Troubleshooting", level: 2 },
 ];
 
-const CodeBlock = ({ code }: { code: string }) => {
-  const [copied, setCopied] = useState(false);
-
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
-  };
-
-  return (
-    <div className="relative group">
-      <div className="flex items-center justify-between px-4 py-3 border border-border bg-muted/30 rounded-t-lg">
-        <span className="text-sm text-muted-foreground font-mono">bash</span>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={copyToClipboard}
-          className="h-8 hover:bg-muted"
-        >
-          {copied ? <Check className="h-4 w-4 text-accent" /> : <Copy className="h-4 w-4" />}
-        </Button>
-      </div>
-      <div className="bg-card border border-t-0 border-border rounded-b-lg p-4 overflow-x-auto">
-        <code className="text-sm font-mono text-foreground">{code}</code>
-      </div>
-    </div>
-  );
-};
 
 const Installation = () => {
   return (
@@ -74,7 +45,6 @@ const Installation = () => {
                       <p className="text-sm text-muted-foreground">
                         Latest stable version recommended
                       </p>
-                      <CodeBlock code="nvim --version" />
                     </div>
                   </div>
 
@@ -124,7 +94,7 @@ const Installation = () => {
                     </p>
                   </div>
                 </div>
-                <CodeBlock code="mv ~/.config/nvim ~/.config/nvim.backup" />
+                <TerminalCodeBlock code="mv ~/.config/nvim ~/.config/nvim.backup" filename="bash" />
               </div>
 
               <div id="clone" className="space-y-4">
@@ -132,7 +102,7 @@ const Installation = () => {
                 <p className="text-muted-foreground">
                   Clone the FKvim repository to your Neovim configuration directory:
                 </p>
-                <CodeBlock code="git clone https://github.com/TheFlashCodes/FKvim.git ~/.config/nvim" />
+                <TerminalCodeBlock code="git clone https://github.com/TheFlashCodes/FKvim.git ~/.config/nvim" filename="bash" />
               </div>
 
               <div className="space-y-4">
@@ -140,7 +110,7 @@ const Installation = () => {
                 <p className="text-muted-foreground">
                   Start Neovim and let the plugins install automatically:
                 </p>
-                <CodeBlock code="nvim" />
+                <TerminalCodeBlock code="nvim" filename="bash" />
                 <p className="text-sm text-muted-foreground">
                   The first launch will take a few moments as plugins are installed. 
                   Once complete, restart Neovim to ensure all plugins are loaded correctly.
@@ -156,7 +126,7 @@ const Installation = () => {
               <Card className="bg-card/50 border-border">
                 <CardContent className="p-6 space-y-3">
                   <p className="font-semibold">Run health check:</p>
-                  <CodeBlock code=":checkhealth" />
+                  <TerminalCodeBlock code=":checkhealth" language="vim" filename="neovim" />
                   <p className="text-sm text-muted-foreground">
                     This command will show you any missing dependencies or configuration issues.
                   </p>
@@ -173,17 +143,17 @@ const Installation = () => {
               <div className="space-y-4">
                 <div>
                   <p className="font-semibold mb-2">1. Remove FKvim configuration:</p>
-                  <CodeBlock code="rm -rf ~/.config/nvim" />
+                  <TerminalCodeBlock code="rm -rf ~/.config/nvim" filename="bash" />
                 </div>
 
                 <div>
                   <p className="font-semibold mb-2">2. Remove plugin data:</p>
-                  <CodeBlock code="rm -rf ~/.local/share/nvim" />
+                  <TerminalCodeBlock code="rm -rf ~/.local/share/nvim" filename="bash" />
                 </div>
 
                 <div>
                   <p className="font-semibold mb-2">3. Restore your backup (if you created one):</p>
-                  <CodeBlock code="mv ~/.config/nvim.backup ~/.config/nvim" />
+                  <TerminalCodeBlock code="mv ~/.config/nvim.backup ~/.config/nvim" filename="bash" />
                 </div>
               </div>
             </section>
