@@ -27,10 +27,10 @@ const sections: DocSection[] = [
   {
     title: "Plugins",
     items: [
-      { title: "FkThemes", path: "/docs/fkthemes" },
-      { title: "FkNotes", path: "/docs/fknotes" },
-      { title: "FkAI", path: "/docs/fkai" },
-      { title: "FkRunner", path: "/docs/fkrunner" },
+      { title: "FkThemes", path: "/docs/plugins/fkthemes" },
+      { title: "FkNotes", path: "/docs/plugins/fknotes" },
+      { title: "FkAI", path: "/docs/plugins/fkai" },
+      { title: "FkRunner", path: "/docs/plugins/fkrunner" },
     ],
   },
 ];
