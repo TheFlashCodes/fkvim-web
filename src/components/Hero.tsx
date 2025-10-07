@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { Terminal, Github, Zap, ChevronLeft, ChevronRight } from "lucide-react";
+import { Terminal, Github, Zap, Loader2, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
@@ -9,17 +9,64 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import type { CarouselApi } from "@/components/ui/carousel";
 
 const Hero = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [animationStep, setAnimationStep] = useState(0);
+  const [typedCommand, setTypedCommand] = useState("");
+  const [api, setApi] = useState<CarouselApi>();
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsExpanded(true);
-    }, 1000);
+    const command = "FKvim";
+    let currentIndex = 0;
 
-    return () => clearTimeout(timer);
+    // Step 0: Show git clone command (1s)
+    const step0Timer = setTimeout(() => setAnimationStep(1), 1000);
+    
+    // Step 1: Show loading (2s)
+    const step1Timer = setTimeout(() => setAnimationStep(2), 3000);
+    
+    // Step 2: Show success checkmark (1s)
+    const step2Timer = setTimeout(() => setAnimationStep(3), 4000);
+    
+    // Step 3: Start typing FKvim
+    const step3Timer = setTimeout(() => {
+      setAnimationStep(3);
+      const typingInterval = setInterval(() => {
+        if (currentIndex <= command.length) {
+          setTypedCommand(command.slice(0, currentIndex));
+          currentIndex++;
+        } else {
+          clearInterval(typingInterval);
+          setTimeout(() => setAnimationStep(4), 500); // Show "Opening FKvim..."
+        }
+      }, 150);
+      
+      return () => clearInterval(typingInterval);
+    }, 5000);
+    
+    // Step 4: Show carousel
+    const step4Timer = setTimeout(() => setAnimationStep(5), 7000);
+
+    return () => {
+      clearTimeout(step0Timer);
+      clearTimeout(step1Timer);
+      clearTimeout(step2Timer);
+      clearTimeout(step3Timer);
+      clearTimeout(step4Timer);
+    };
   }, []);
+
+  // Auto-scroll carousel infinitely
+  useEffect(() => {
+    if (!api) return;
+
+    const interval = setInterval(() => {
+      api.scrollNext();
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [api]);
 
   const screenshots = [
     { title: "Dashboard View", description: "Beautiful and intuitive interface" },
@@ -79,24 +126,73 @@ const Hero = () => {
           {/* Interactive Terminal Preview */}
           <div className="relative mt-16 group">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-500" />
-            <div className={`relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-700 ${isExpanded ? 'min-h-[600px]' : 'min-h-[100px]'}`}>
+            <div className={`relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-700 ${animationStep >= 5 ? 'min-h-[600px]' : 'min-h-[100px]'}`}>
               <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-muted/30">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
-                <span className="text-sm text-muted-foreground font-mono">FKvim</span>
+                <span className="text-sm text-muted-foreground font-mono">Terminal</span>
               </div>
               
-              {/* FKvim Carousel - Full Coverage */}
-              {isExpanded && (
-                <div className="animate-fade-in">
-                  <Carousel className="w-full">
+              <div className="p-4 font-mono text-sm">
+                {/* Step 0: Git clone command */}
+                {animationStep >= 0 && (
+                  <div className="flex items-center gap-2 mb-2 animate-fade-in">
+                    <span className="text-primary">→</span>
+                    <span className="text-foreground">git clone https://github.com/TheFlashCodes/FKvim.git</span>
+                  </div>
+                )}
+
+                {/* Step 1: Loading spinner */}
+                {animationStep >= 1 && (
+                  <div className="flex items-center gap-2 mb-2 animate-fade-in">
+                    <Loader2 className="h-4 w-4 text-accent animate-spin" />
+                    <span className="text-muted-foreground">Installing FKvim......</span>
+                  </div>
+                )}
+
+                {/* Step 2: Success checkmark */}
+                {animationStep >= 2 && (
+                  <div className="flex items-center gap-2 mb-2 animate-fade-in">
+                    <Check className="h-4 w-4 text-accent" />
+                    <span className="text-accent">FKvim successfully installed</span>
+                  </div>
+                )}
+
+                {/* Step 3: Typing FKvim command */}
+                {animationStep >= 3 && animationStep < 4 && (
+                  <div className="flex items-center gap-2 mb-2 animate-fade-in">
+                    <span className="text-primary">:</span>
+                    <span className="text-foreground">{typedCommand}</span>
+                    <span className="inline-block w-2 h-4 bg-primary animate-pulse"></span>
+                  </div>
+                )}
+
+                {/* Step 4: Opening FKvim */}
+                {animationStep >= 4 && animationStep < 5 && (
+                  <div className="flex items-center gap-2 mb-2 animate-fade-in">
+                    <span className="text-accent">Opening FKvim...</span>
+                  </div>
+                )}
+              </div>
+              
+              {/* Step 5: FKvim Carousel - Full Coverage */}
+              {animationStep >= 5 && (
+                <div className="animate-fade-in absolute inset-0 top-[52px]">
+                  <Carousel 
+                    className="w-full h-full"
+                    setApi={setApi}
+                    opts={{
+                      loop: true,
+                      align: "start",
+                    }}
+                  >
                     <CarouselContent>
                       {screenshots.map((screenshot, index) => (
                         <CarouselItem key={index}>
-                          <div className="bg-background/50 min-h-[500px] flex flex-col items-center justify-center">
+                          <div className="bg-background/50 h-[548px] flex flex-col items-center justify-center">
                             <Terminal className="h-32 w-32 text-primary mb-6" />
                             <h3 className="text-2xl font-semibold text-foreground mb-3">
                               {screenshot.title}
