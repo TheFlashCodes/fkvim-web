@@ -136,47 +136,49 @@ const Hero = () => {
                 <span className="text-sm text-muted-foreground font-mono">Terminal</span>
               </div>
               
-              <div className="p-4 font-mono text-sm">
-                {/* Step 0: Git clone command */}
-                {animationStep >= 0 && (
-                  <div className="flex items-center gap-2 mb-2 animate-fade-in">
-                    <span className="text-primary">→</span>
-                    <span className="text-foreground">git clone https://github.com/TheFlashCodes/FKvim.git</span>
-                  </div>
-                )}
+              {animationStep < 5 && (
+                <div className="p-4 font-mono text-sm">
+                  {/* Step 0: Git clone command */}
+                  {animationStep >= 0 && (
+                    <div className="flex items-center gap-2 mb-2 animate-fade-in">
+                      <span className="text-primary">→</span>
+                      <span className="text-foreground">git clone https://github.com/TheFlashCodes/FKvim.git</span>
+                    </div>
+                  )}
 
-                {/* Step 1: Loading spinner */}
-                {animationStep >= 1 && (
-                  <div className="flex items-center gap-2 mb-2 animate-fade-in">
-                    <Loader2 className="h-4 w-4 text-accent animate-spin" />
-                    <span className="text-muted-foreground">Installing FKvim......</span>
-                  </div>
-                )}
+                  {/* Step 1: Loading spinner */}
+                  {animationStep >= 1 && animationStep < 2 && (
+                    <div className="flex items-center gap-2 mb-2 animate-fade-in">
+                      <Loader2 className="h-4 w-4 text-accent animate-spin" />
+                      <span className="text-muted-foreground">Installing FKvim......</span>
+                    </div>
+                  )}
 
-                {/* Step 2: Success checkmark */}
-                {animationStep >= 2 && (
-                  <div className="flex items-center gap-2 mb-2 animate-fade-in">
-                    <Check className="h-4 w-4 text-accent" />
-                    <span className="text-accent">FKvim successfully installed</span>
-                  </div>
-                )}
+                  {/* Step 2: Success checkmark */}
+                  {animationStep >= 2 && (
+                    <div className="flex items-center gap-2 mb-2 animate-fade-in">
+                      <Check className="h-4 w-4 text-accent" />
+                      <span className="text-accent">FKvim successfully installed</span>
+                    </div>
+                  )}
 
-                {/* Step 3: Typing FKvim command */}
-                {animationStep >= 3 && animationStep < 4 && (
-                  <div className="flex items-center gap-2 mb-2 animate-fade-in">
-                    <span className="text-primary">:</span>
-                    <span className="text-foreground">{typedCommand}</span>
-                    <span className="inline-block w-2 h-4 bg-primary animate-pulse"></span>
-                  </div>
-                )}
+                  {/* Step 3: Typing FKvim command */}
+                  {animationStep >= 3 && animationStep < 4 && (
+                    <div className="flex items-center gap-2 mb-2 animate-fade-in">
+                      <span className="text-primary">:</span>
+                      <span className="text-foreground">{typedCommand}</span>
+                      <span className="inline-block w-2 h-4 bg-primary animate-pulse"></span>
+                    </div>
+                  )}
 
-                {/* Step 4: Opening FKvim */}
-                {animationStep >= 4 && animationStep < 5 && (
-                  <div className="flex items-center gap-2 mb-2 animate-fade-in">
-                    <span className="text-accent">Opening FKvim...</span>
-                  </div>
-                )}
-              </div>
+                  {/* Step 4: Opening FKvim */}
+                  {animationStep >= 4 && animationStep < 5 && (
+                    <div className="flex items-center gap-2 mb-2 animate-fade-in">
+                      <span className="text-accent">Opening FKvim...</span>
+                    </div>
+                  )}
+                </div>
+              )}
               
               {/* Step 5: FKvim Carousel - Full Coverage */}
               {animationStep >= 5 && (
