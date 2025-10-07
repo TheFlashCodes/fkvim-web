@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Home, Book, Download, Settings, Code, Package, ChevronDown, ChevronRight } from "lucide-react";
+import { Home, Book, Download, Settings, Code, Package, ChevronDown, ChevronRight, Zap } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface DocSection {
@@ -45,14 +45,22 @@ const DocsSidebar = () => {
   };
 
   return (
-    <aside className="w-64 border-r border-border bg-card/30 backdrop-blur-sm overflow-y-auto h-[calc(100vh-4rem)]">
-      <div className="p-6 space-y-6">
+    <aside className="w-64 border-r border-border bg-card/30 backdrop-blur-sm h-[calc(100vh-4rem)] flex flex-col">
+      <div className="p-6 space-y-6 flex-1 overflow-y-auto">
         <NavLink
           to="/"
           className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           <Home className="h-4 w-4" />
           Back to Home
+        </NavLink>
+
+        <NavLink
+          to="/docs/introduction"
+          className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm bg-gradient-to-r from-primary/10 to-secondary/10 border border-primary/20 text-primary hover:from-primary/20 hover:to-secondary/20 transition-all font-medium"
+        >
+          <Zap className="h-4 w-4" />
+          Learn FKvim
         </NavLink>
 
         {sections.map((section) => (

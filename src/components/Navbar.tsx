@@ -29,6 +29,9 @@ const Navbar = () => {
             <Link to="/docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Docs
             </Link>
+            <Link to="/docs/quick-start" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              Try FKvim Interactive
+            </Link>
           </div>
 
           <div className="flex items-center gap-4">

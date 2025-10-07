@@ -11,21 +11,14 @@ import {
 } from "@/components/ui/carousel";
 
 const Hero = () => {
-  const [step, setStep] = useState(0);
   const [isExpanded, setIsExpanded] = useState(false);
 
   useEffect(() => {
-    const timers = [
-      setTimeout(() => setStep(1), 1000),
-      setTimeout(() => setStep(2), 2500),
-      setTimeout(() => setStep(3), 3500),
-      setTimeout(() => {
-        setStep(4);
-        setIsExpanded(true);
-      }, 4500),
-    ];
+    const timer = setTimeout(() => {
+      setIsExpanded(true);
+    }, 1000);
 
-    return () => timers.forEach(clearTimeout);
+    return () => clearTimeout(timer);
   }, []);
 
   const screenshots = [
@@ -86,7 +79,7 @@ const Hero = () => {
           {/* Interactive Terminal Preview */}
           <div className="relative mt-16 group">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-500" />
-            <div className={`relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-700 ${isExpanded ? 'min-h-[600px]' : ''}`}>
+            <div className={`relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-700 ${isExpanded ? 'min-h-[600px]' : 'min-h-[100px]'}`}>
               <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-muted/30">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -96,81 +89,30 @@ const Hero = () => {
                 <span className="text-sm text-muted-foreground font-mono">FKvim</span>
               </div>
               
-              <div className="p-6">
-                {/* Terminal Commands */}
-                <div className="font-mono text-sm space-y-2 text-left mb-6">
-                  {step >= 1 && (
-                    <div className="flex gap-2 animate-fade-in">
-                      <span className="text-accent">→</span>
-                      <span className="text-muted-foreground">git clone https://github.com/TheFlashCodes/FKvim.git</span>
-                    </div>
-                  )}
-                  {step >= 2 && (
-                    <div className="flex gap-2 animate-fade-in">
-                      <span className="text-secondary">✓</span>
-                      <span className="text-foreground">FKvim successfully installed</span>
-                    </div>
-                  )}
-                  {step >= 3 && (
-                    <div className="flex gap-2 animate-fade-in">
-                      <span className="text-primary">→</span>
-                      <span className="text-muted-foreground">:FKvim</span>
-                    </div>
-                  )}
+              {/* FKvim Carousel - Full Coverage */}
+              {isExpanded && (
+                <div className="animate-fade-in">
+                  <Carousel className="w-full">
+                    <CarouselContent>
+                      {screenshots.map((screenshot, index) => (
+                        <CarouselItem key={index}>
+                          <div className="bg-background/50 min-h-[500px] flex flex-col items-center justify-center">
+                            <Terminal className="h-32 w-32 text-primary mb-6" />
+                            <h3 className="text-2xl font-semibold text-foreground mb-3">
+                              {screenshot.title}
+                            </h3>
+                            <p className="text-muted-foreground text-center text-lg">
+                              {screenshot.description}
+                            </p>
+                          </div>
+                        </CarouselItem>
+                      ))}
+                    </CarouselContent>
+                    <CarouselPrevious className="left-4" />
+                    <CarouselNext className="right-4" />
+                  </Carousel>
                 </div>
-
-                {/* Expanded Content with Carousel */}
-                {isExpanded && (
-                  <div className="space-y-6 animate-fade-in">
-                    <Carousel className="w-full">
-                      <CarouselContent>
-                        {screenshots.map((screenshot, index) => (
-                          <CarouselItem key={index}>
-                            <div className="p-1">
-                              <div className="bg-muted/50 rounded-lg p-8 min-h-[300px] flex flex-col items-center justify-center border border-border/50">
-                                <Terminal className="h-24 w-24 text-primary mb-4" />
-                                <h3 className="text-xl font-semibold text-foreground mb-2">
-                                  {screenshot.title}
-                                </h3>
-                                <p className="text-muted-foreground text-center">
-                                  {screenshot.description}
-                                </p>
-                              </div>
-                            </div>
-                          </CarouselItem>
-                        ))}
-                      </CarouselContent>
-                      <CarouselPrevious className="left-2" />
-                      <CarouselNext className="right-2" />
-                    </Carousel>
-
-                    {/* Interactive Buttons */}
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                      <Button 
-                        size="lg" 
-                        className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity glow-primary w-full sm:w-auto"
-                        asChild
-                      >
-                        <Link to="/docs/quick-start">
-                          <Terminal className="mr-2 h-5 w-5" />
-                          Try FKvim Interactive
-                        </Link>
-                      </Button>
-                      <Button 
-                        size="lg" 
-                        variant="outline" 
-                        className="border-primary/30 hover:bg-primary/10 w-full sm:w-auto"
-                        asChild
-                      >
-                        <Link to="/docs/introduction">
-                          <Zap className="mr-2 h-5 w-5" />
-                          Learn FKvim
-                        </Link>
-                      </Button>
-                    </div>
-                  </div>
-                )}
-              </div>
+              )}
             </div>
           </div>
         </div>
