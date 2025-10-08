@@ -12,9 +12,7 @@ interface TerminalLine {
   screenshot?: string;
 }
 
-const WELCOME_MESSAGE = `→ Welcome to FKvim Interactive Demo
-
-Type fkvim, nvim, or neovim to get started`;
+const WELCOME_MESSAGE = `→ Welcome to FKvim Interactive Demo - Type fkvim, nvim, or neovim to get started`;
 
 type ScreenState = "welcome" | "loading" | "dashboard" | "insert" | "explorer" | "search" | "grep";
 
@@ -135,32 +133,40 @@ export const InteractiveTerminal = () => {
     } else {
       // For other states, respond to immediate key presses
       if (e.key === "Escape") {
+        e.preventDefault();
         handleCommand("escape");
       } else if (e.key === "i" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
         e.preventDefault();
         handleCommand("i");
-      } else if (e.key === "e" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
+      } else if (e.key === " " && e.code === "Space") {
         e.preventDefault();
-        handleCommand("e");
+        // Track what was typed before space
+        if (currentInput === "e") {
+          handleCommand(" e");
+          setCurrentInput("");
+        } else if (currentInput === "/") {
+          handleCommand(" /");
+          setCurrentInput("");
+        } else if (currentInput === "//") {
+          handleCommand(" //");
+          setCurrentInput("");
+        }
+      } else if (e.key === "e" && !e.shiftKey && !e.ctrlKey && !e.altKey && screenState === "dashboard") {
+        e.preventDefault();
+        setCurrentInput("e");
       } else if (e.key === "/" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
         e.preventDefault();
-        handleCommand("/");
+        if (currentInput === "/") {
+          setCurrentInput("//");
+        } else {
+          setCurrentInput("/");
+        }
       } else if (e.key === ":" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
         e.preventDefault();
         setCurrentInput(":");
       } else if (e.key === "q" && currentInput === ":") {
         e.preventDefault();
         handleCommand(":q");
-      } else if (e.key === " ") {
-        e.preventDefault();
-        const nextChar = currentInput;
-        if (nextChar === "e") {
-          handleCommand(" e");
-        } else if (nextChar === "/") {
-          handleCommand(" /");
-        } else if (nextChar === "//") {
-          handleCommand(" //");
-        }
         setCurrentInput("");
       }
     }
@@ -249,9 +255,19 @@ export const InteractiveTerminal = () => {
             </div>
           ) : screenState === "loading" ? (
             <div className="flex items-center justify-center h-full">
-              <div className="flex flex-col items-center gap-4">
-                <Loader2 className="h-12 w-12 text-primary animate-spin" />
-                <p className="text-muted-foreground text-lg">Loading FKvim...</p>
+              <div className="flex flex-col items-center gap-6">
+                <Loader2 className="h-16 w-16 text-primary animate-spin glow-primary" />
+                <div className="text-center">
+                  <p className="text-primary text-xl font-semibold mb-2 flex items-center gap-2 justify-center">
+                    Opening FKvim
+                    <span className="inline-flex gap-1">
+                      <span className="animate-pulse" style={{ animationDelay: '0ms' }}>.</span>
+                      <span className="animate-pulse" style={{ animationDelay: '200ms' }}>.</span>
+                      <span className="animate-pulse" style={{ animationDelay: '400ms' }}>.</span>
+                    </span>
+                  </p>
+                  <p className="text-muted-foreground text-sm">Preloading interface...</p>
+                </div>
               </div>
             </div>
           ) : (

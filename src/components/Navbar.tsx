@@ -9,33 +9,33 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto px-6">
         <div className="flex h-16 items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
+          <a href="https://fkvim.netlify.app/" className="flex items-center gap-2 group">
             <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary group-hover:glow-primary transition-all duration-300">
               <Terminal className="h-6 w-6 text-primary-foreground" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               FKvim
             </span>
-          </Link>
+          </a>
 
           <div className="flex items-center gap-6 ml-auto">
             <div className="hidden md:flex items-center gap-6">
-              <Link to="/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              <a href="https://fkvim.netlify.app/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Home
-              </Link>
-              <a href="/#features" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              </a>
+              <a href="https://fkvim.netlify.app/#features" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Features
               </a>
-              <a href="/#installation" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              <a href="https://fkvim.netlify.app/#installation" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Installation
               </a>
-              <Link to="/docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              <a href="https://fkvim.netlify.app/docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Docs
+              </a>
+              <Link to="/interactive" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2">
+                Try FKvim Interactive
+                <Badge variant="default" className="text-xs px-2 py-0 animate-pulse">New</Badge>
               </Link>
-            <Link to="/interactive" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2">
-              Try FKvim Interactive
-              <Badge variant="default" className="text-xs px-2 py-0 animate-pulse">New</Badge>
-            </Link>
             </div>
 
             <div className="hidden lg:block">
@@ -50,7 +50,7 @@ const Navbar = () => {
               </a>
             </Button>
             <Button asChild className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity">
-              <Link to="/docs/installation">Get Started</Link>
+              <a href="https://fkvim.netlify.app/docs/installation">Get Started</a>
             </Button>
           </div>
         </div>
