@@ -56,7 +56,7 @@ export const SearchCommand = () => {
     <>
       <button
         onClick={() => setOpen(true)}
-        className="relative flex h-9 w-full items-center justify-between rounded-md border border-input bg-background/50 px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-accent/50 hover:text-accent-foreground md:w-64"
+        className="relative flex h-9 w-full items-center justify-between rounded-md border border-input bg-background/50 px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground md:w-64"
       >
         <span className="flex items-center gap-2">
           <Search className="h-4 w-4" />
