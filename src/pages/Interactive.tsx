@@ -12,16 +12,16 @@ const Interactive = () => {
       
       <Navbar />
       
-      <main className="pt-24 pb-16 px-6 relative z-10">
+      <main className="pt-20 sm:pt-24 pb-12 sm:pb-16 px-4 sm:px-6 relative z-10">
         <div className="container mx-auto">
           {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-5xl md:text-6xl font-bold mb-6">
+          <div className="text-center mb-8 sm:mb-12">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 px-4">
               <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
                 Experience FKvim
               </span>
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
               Try out the FKvim Neovim configuration interactively in your browser
             </p>
           </div>

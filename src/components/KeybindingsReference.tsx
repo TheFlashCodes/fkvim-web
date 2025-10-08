@@ -67,17 +67,17 @@ const keybindingSections: KeybindingSection[] = [
 
 export const KeybindingsReference = () => {
   return (
-    <div className="w-full max-w-7xl mx-auto mt-16">
-      <div className="text-center mb-12">
-        <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+    <div className="w-full max-w-7xl mx-auto mt-12 sm:mt-16 px-4">
+      <div className="text-center mb-8 sm:mb-12">
+        <h2 className="text-3xl sm:text-4xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent px-4">
           Keybindings Reference
         </h2>
-        <p className="text-muted-foreground text-lg">
+        <p className="text-muted-foreground text-base sm:text-lg px-4">
           Master FKvim with these essential keyboard shortcuts
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         {keybindingSections.map((section, index) => (
           <Card
             key={index}

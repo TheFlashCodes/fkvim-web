@@ -11,20 +11,20 @@ const DocsLayout = ({ children, tableOfContents }: DocsLayoutProps) => {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
-      <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] xl:grid-cols-[280px_1fr_280px] pt-16 h-[calc(100vh-4rem)] overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] xl:grid-cols-[280px_1fr_280px] pt-16 h-[calc(100vh-4rem)] overflow-hidden">
         {/* Left Sidebar - Fixed/Sticky */}
-        <aside className="hidden lg:block sticky top-16 h-[calc(100vh-4rem)] overflow-hidden">
+        <aside className="hidden lg:block sticky top-16 h-[calc(100vh-4rem)] overflow-hidden border-r border-border">
           <DocsSidebar />
         </aside>
 
         {/* Center Content - Scrollable */}
-        <main className="overflow-y-auto h-[calc(100vh-4rem)]">
+        <main className="overflow-y-auto h-[calc(100vh-4rem)] px-4 sm:px-6 md:px-8">
           {children}
         </main>
 
         {/* Right Sidebar (TOC) - Fixed/Sticky */}
         {tableOfContents && (
-          <aside className="hidden xl:block sticky top-16 h-[calc(100vh-4rem)] overflow-hidden">
+          <aside className="hidden xl:block sticky top-16 h-[calc(100vh-4rem)] overflow-hidden border-l border-border">
             {tableOfContents}
           </aside>
         )}

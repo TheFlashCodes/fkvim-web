@@ -36,23 +36,23 @@ const features = [
 
 const Features = () => {
   return (
-    <section id="features" className="py-24 relative">
+    <section id="features" className="py-12 sm:py-16 md:py-24 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-secondary/5 via-transparent to-transparent" />
       
-      <div className="container relative z-10 px-6">
-        <div className="text-center space-y-4 mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold">
+      <div className="container relative z-10 px-4 sm:px-6">
+        <div className="text-center space-y-3 sm:space-y-4 mb-12 sm:mb-16">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold px-4">
             Everything you need for{" "}
             <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               modern development
             </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto px-4">
             FKvim comes packed with features to boost your productivity and enhance your coding experience
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
           {features.map((feature, index) => (
             <Card 
               key={index} 

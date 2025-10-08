@@ -18,8 +18,8 @@ const Navbar = () => {
             </span>
           </a>
 
-          <div className="flex items-center gap-6 ml-auto">
-            <div className="hidden md:flex items-center gap-6">
+          <div className="flex items-center gap-3 md:gap-6 ml-auto">
+            <div className="hidden lg:flex items-center gap-4 xl:gap-6">
               <a href="https://fkvim.netlify.app/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Home
               </a>
@@ -33,24 +33,28 @@ const Navbar = () => {
                 Docs
               </a>
               <a href="https://fkvim-playground.lovable.app/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2">
-                Try FKvim Interactive
+                <span className="hidden xl:inline">Try FKvim Interactive</span>
+                <span className="xl:hidden">Try Interactive</span>
                 <Badge variant="default" className="text-xs px-2 py-0 animate-pulse">New</Badge>
               </a>
             </div>
 
-            <div className="hidden lg:block">
+            <div className="hidden md:block">
               <SearchCommand />
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <Button variant="ghost" size="icon" asChild className="hover:bg-muted">
+          <div className="flex items-center gap-2 md:gap-4">
+            <Button variant="ghost" size="icon" asChild className="hover:bg-muted h-9 w-9 md:h-10 md:w-10">
               <a href="https://github.com/TheFlashCodes/FKvim" target="_blank" rel="noopener noreferrer">
-                <Github className="h-5 w-5" />
+                <Github className="h-4 w-4 md:h-5 md:w-5" />
               </a>
             </Button>
-            <Button asChild className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity">
-              <a href="https://fkvim.netlify.app/docs/installation">Get Started</a>
+            <Button asChild className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity text-xs md:text-sm h-9 md:h-10 px-3 md:px-4">
+              <a href="https://fkvim.netlify.app/docs/installation">
+                <span className="hidden sm:inline">Get Started</span>
+                <span className="sm:hidden">Start</span>
+              </a>
             </Button>
           </div>
         </div>

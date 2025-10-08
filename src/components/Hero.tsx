@@ -93,7 +93,7 @@ const Hero = () => {
           </div>
 
           {/* Main Heading */}
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight px-4">
             <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
               Modern Neovim IDE
             </span>
@@ -102,31 +102,31 @@ const Hero = () => {
           </h1>
 
           {/* Description */}
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
             A blazingly fast, feature-rich Neovim configuration that transforms your editor into a powerful IDE. 
             Built for productivity and aesthetics.
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity glow-primary px-8 h-12 text-base" asChild>
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 w-full px-4">
+            <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity glow-primary px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base w-full sm:w-auto" asChild>
               <Link to="/docs/installation">
-                <Terminal className="mr-2 h-5 w-5" />
+                <Terminal className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
                 Get Started
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10 px-8 h-12 text-base" asChild>
+            <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10 px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base w-full sm:w-auto" asChild>
               <a href="https://github.com/TheFlashCodes/FKvim" target="_blank" rel="noopener noreferrer">
-                <Github className="mr-2 h-5 w-5" />
+                <Github className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
                 View on GitHub
               </a>
             </Button>
           </div>
 
           {/* Interactive Terminal Preview */}
-          <div className="relative mt-16 group">
+          <div className="relative mt-12 sm:mt-16 group w-full px-4">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-500" />
-            <div className={`relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-700 ${animationStep >= 5 ? 'min-h-[600px]' : 'min-h-[100px]'}`}>
+            <div className={`relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-700 ${animationStep >= 5 ? 'min-h-[400px] sm:min-h-[500px] md:min-h-[600px]' : 'min-h-[100px]'}`}>
               <div className="flex items-center gap-2 px-4 py-3 border-b border-border bg-muted/30">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -194,20 +194,20 @@ const Hero = () => {
                     <CarouselContent>
                       {screenshots.map((screenshot, index) => (
                         <CarouselItem key={index}>
-                          <div className="bg-background/50 h-[548px] flex flex-col items-center justify-center">
-                            <Terminal className="h-32 w-32 text-primary mb-6" />
-                            <h3 className="text-2xl font-semibold text-foreground mb-3">
+                          <div className="bg-background/50 h-[348px] sm:h-[448px] md:h-[548px] flex flex-col items-center justify-center px-4">
+                            <Terminal className="h-16 w-16 sm:h-24 sm:w-24 md:h-32 md:w-32 text-primary mb-4 sm:mb-6" />
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-2 sm:mb-3 text-center">
                               {screenshot.title}
                             </h3>
-                            <p className="text-muted-foreground text-center text-lg">
+                            <p className="text-muted-foreground text-center text-sm sm:text-base md:text-lg">
                               {screenshot.description}
                             </p>
                           </div>
                         </CarouselItem>
                       ))}
                     </CarouselContent>
-                    <CarouselPrevious className="left-4" />
-                    <CarouselNext className="right-4" />
+                    <CarouselPrevious className="left-2 sm:left-4" />
+                    <CarouselNext className="right-2 sm:right-4" />
                   </Carousel>
                 </div>
               )}

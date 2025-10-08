@@ -14,19 +14,19 @@ const Installation = () => {
   };
 
   return (
-    <section id="installation" className="py-24 relative">
+    <section id="installation" className="py-12 sm:py-16 md:py-24 relative">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
       
-      <div className="container relative z-10 px-6">
-        <div className="max-w-4xl mx-auto space-y-12">
-          <div className="text-center space-y-4">
-            <h2 className="text-4xl md:text-5xl font-bold">
+      <div className="container relative z-10 px-4 sm:px-6">
+        <div className="max-w-4xl mx-auto space-y-8 sm:space-y-12">
+          <div className="text-center space-y-3 sm:space-y-4">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold px-4">
               Get started in{" "}
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 seconds
               </span>
             </h2>
-            <p className="text-xl text-muted-foreground">
+            <p className="text-base sm:text-lg md:text-xl text-muted-foreground px-4">
               Install FKvim and start coding with a powerful Neovim configuration
             </p>
           </div>
@@ -54,12 +54,12 @@ const Installation = () => {
                 )}
               </Button>
             </div>
-            <CardContent className="p-6 font-mono text-sm">
-              <code className="text-foreground">{installCommand}</code>
+            <CardContent className="p-4 sm:p-6 font-mono text-xs sm:text-sm overflow-x-auto">
+              <code className="text-foreground break-all sm:break-normal">{installCommand}</code>
             </CardContent>
           </Card>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
             <Card className="bg-card/50 border-border backdrop-blur-sm">
               <CardContent className="p-6 space-y-3">
                 <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center text-primary font-bold text-lg">
