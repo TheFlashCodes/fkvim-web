@@ -34,7 +34,7 @@ const Navbar = () => {
               </Link>
               <Link to="/docs/quick-start" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2">
                 Try FKvim Interactive
-                <Badge variant="default" className="text-xs px-2 py-0">New</Badge>
+                <Badge variant="default" className="text-xs px-2 py-0 animate-pulse">New</Badge>
               </Link>
             </div>
 
