@@ -18,27 +18,29 @@ const Navbar = () => {
             </span>
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
-            <Link to="/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Home
-            </Link>
-            <a href="/#features" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Features
-            </a>
-            <a href="/#installation" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Installation
-            </a>
-            <Link to="/docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
-              Docs
-            </Link>
-            <Link to="/docs/quick-start" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2">
-              Try FKvim Interactive
-              <Badge variant="default" className="text-xs px-2 py-0">New</Badge>
-            </Link>
-          </div>
+          <div className="flex items-center gap-6 ml-auto">
+            <div className="hidden md:flex items-center gap-6">
+              <Link to="/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+                Home
+              </Link>
+              <a href="/#features" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+                Features
+              </a>
+              <a href="/#installation" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+                Installation
+              </a>
+              <Link to="/docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+                Docs
+              </Link>
+              <Link to="/docs/quick-start" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2">
+                Try FKvim Interactive
+                <Badge variant="default" className="text-xs px-2 py-0">New</Badge>
+              </Link>
+            </div>
 
-          <div className="flex-1 max-w-md mx-8 hidden lg:block">
-            <SearchCommand />
+            <div className="hidden lg:block">
+              <SearchCommand />
+            </div>
           </div>
 
           <div className="flex items-center gap-4">
