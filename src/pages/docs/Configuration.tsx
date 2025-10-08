@@ -13,9 +13,8 @@ const tocItems = [
 
 const Configuration = () => {
   return (
-    <DocsLayout>
-      <div className="flex">
-        <div className="flex-1 max-w-4xl mx-auto px-8 py-12">
+    <DocsLayout tableOfContents={<TableOfContents items={tocItems} />}>
+      <div className="max-w-4xl mx-auto px-8 py-12">
           <div className="space-y-2 mb-8">
             <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               Configuration
@@ -202,8 +201,6 @@ vim.opt.colorcolumn = "80"`}
             </section>
           </div>
         </div>
-        <TableOfContents items={tocItems} />
-      </div>
     </DocsLayout>
   );
 };
