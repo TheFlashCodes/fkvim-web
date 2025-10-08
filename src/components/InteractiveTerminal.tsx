@@ -82,10 +82,35 @@ export const InteractiveTerminal = () => {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter" && currentInput.trim()) {
-      handleCommand(currentInput.trim());
-    } else if (e.key === "Escape") {
-      handleCommand("escape");
+    if (screenState === "welcome") {
+      if (e.key === "Enter" && currentInput.trim()) {
+        handleCommand(currentInput.trim());
+      }
+    } else {
+      // For other states, respond to immediate key presses
+      if (e.key === "Escape") {
+        handleCommand("escape");
+      } else if (e.key === "i") {
+        e.preventDefault();
+        handleCommand("i");
+      } else if (e.key === "e" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        handleCommand("e");
+      } else if (e.key === "/" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        handleCommand("/");
+      } else if (e.key === " ") {
+        e.preventDefault();
+        const nextChar = currentInput;
+        if (nextChar === "e") {
+          handleCommand(" e");
+        } else if (nextChar === "/") {
+          handleCommand(" /");
+        } else if (nextChar === "//") {
+          handleCommand(" //");
+        }
+        setCurrentInput("");
+      }
     }
   };
 
@@ -110,7 +135,7 @@ export const InteractiveTerminal = () => {
     if (screenState === "welcome") {
       return "Type: fkvim, nvim, or neovim to start";
     } else if (screenState === "dashboard") {
-      return "Press: i (Insert) | Space+e (Explorer) | Space+/ (Search) | Space+// (Grep)";
+      return "Press: i for Insert Mode";
     } else {
       return "Press: Esc (Dashboard) | i (Insert) | Space+e (Explorer) | Space+/ (Search)";
     }
