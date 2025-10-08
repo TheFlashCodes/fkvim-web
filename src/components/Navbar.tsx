@@ -12,30 +12,30 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
       <div className="container mx-auto px-6">
         <div className="flex h-16 items-center justify-between">
-          <a href="https://fkvim.netlify.app/" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group">
             <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-gradient-to-br from-primary to-secondary group-hover:glow-primary transition-all duration-300">
               <Terminal className="h-6 w-6 text-primary-foreground" />
             </div>
             <span className="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               FKvim
             </span>
-          </a>
+          </Link>
 
           <div className="flex items-center gap-3 md:gap-6 ml-auto">
             <div className="hidden lg:flex items-center gap-4 xl:gap-6">
-              <a href="https://fkvim.netlify.app/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              <Link to="/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Home
-              </a>
-              <a href="https://fkvim.netlify.app/#features" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              </Link>
+              <a href="/#features" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Features
               </a>
-              <a href="https://fkvim.netlify.app/#installation" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              <a href="/#installation" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Installation
               </a>
-              <a href="https://fkvim.netlify.app/docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+              <Link to="/docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Docs
-              </a>
-              <a href="https://fkvim-playground.lovable.app/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2">
+              </Link>
+              <a href="https://fkvim-playground.lovable.app/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2" target="_blank" rel="noopener noreferrer">
                 <span className="hidden xl:inline">Try FKvim Interactive</span>
                 <span className="xl:hidden">Try Interactive</span>
                 <Badge variant="default" className="text-xs px-2 py-0 animate-pulse">New</Badge>
@@ -57,38 +57,40 @@ const Navbar = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-[280px] sm:w-[350px] bg-background border-border">
                 <div className="flex flex-col gap-6 mt-8">
-                  <a 
-                    href="https://fkvim.netlify.app/" 
+                  <Link 
+                    to="/" 
                     className="text-base font-medium text-foreground hover:text-primary transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     Home
-                  </a>
+                  </Link>
                   <a 
-                    href="https://fkvim.netlify.app/#features" 
+                    href="/#features" 
                     className="text-base font-medium text-foreground hover:text-primary transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     Features
                   </a>
                   <a 
-                    href="https://fkvim.netlify.app/#installation" 
+                    href="/#installation" 
                     className="text-base font-medium text-foreground hover:text-primary transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     Installation
                   </a>
-                  <a 
-                    href="https://fkvim.netlify.app/docs" 
+                  <Link 
+                    to="/docs" 
                     className="text-base font-medium text-foreground hover:text-primary transition-colors"
                     onClick={() => setIsOpen(false)}
                   >
                     Docs
-                  </a>
+                  </Link>
                   <a 
                     href="https://fkvim-playground.lovable.app/" 
                     className="text-base font-medium text-foreground hover:text-primary transition-colors inline-flex items-center gap-2"
                     onClick={() => setIsOpen(false)}
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Try FKvim Interactive
                     <Badge variant="default" className="text-xs px-2 py-0">New</Badge>
@@ -106,9 +108,9 @@ const Navbar = () => {
                       </a>
                     </Button>
                     <Button asChild className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90">
-                      <a href="https://fkvim.netlify.app/docs/installation">
+                      <Link to="/docs/installation">
                         Get Started
-                      </a>
+                      </Link>
                     </Button>
                   </div>
                 </div>
@@ -121,10 +123,10 @@ const Navbar = () => {
               </a>
             </Button>
             <Button asChild className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity text-xs md:text-sm h-9 md:h-10 px-3 md:px-4 hidden sm:flex">
-              <a href="https://fkvim.netlify.app/docs/installation">
+              <Link to="/docs/installation">
                 <span className="hidden sm:inline">Get Started</span>
                 <span className="sm:hidden">Start</span>
-              </a>
+              </Link>
             </Button>
           </div>
         </div>
