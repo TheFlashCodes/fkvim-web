@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { Terminal, Info } from "lucide-react";
+import { Terminal, Info, Loader2 } from "lucide-react";
 import dashboardImg from "@/assets/fkvim-dashboard.png";
 import insertImg from "@/assets/fkvim-insert.png";
 import explorerImg from "@/assets/fkvim-explorer.png";
@@ -16,12 +16,13 @@ const WELCOME_MESSAGE = `→ Welcome to FKvim Interactive Demo
 
 Type fkvim, nvim, or neovim to get started`;
 
-type ScreenState = "welcome" | "dashboard" | "insert" | "explorer" | "search" | "grep";
+type ScreenState = "welcome" | "loading" | "dashboard" | "insert" | "explorer" | "search" | "grep";
 
 export const InteractiveTerminal = () => {
   const [screenState, setScreenState] = useState<ScreenState>("welcome");
   const [currentInput, setCurrentInput] = useState("");
   const [showHelp, setShowHelp] = useState(false);
+  const [imagesLoaded, setImagesLoaded] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -37,12 +38,44 @@ export const InteractiveTerminal = () => {
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Preload images
+  useEffect(() => {
+    const preloadImages = async () => {
+      // Preload dashboard and insert first (critical)
+      const criticalImages = [dashboardImg, insertImg];
+      const criticalPromises = criticalImages.map((src) => {
+        return new Promise((resolve, reject) => {
+          const img = new Image();
+          img.onload = resolve;
+          img.onerror = reject;
+          img.src = src;
+        });
+      });
+
+      await Promise.all(criticalPromises);
+      setImagesLoaded(true);
+
+      // Then preload other images in background
+      const otherImages = [explorerImg, searchImg, grepImg];
+      otherImages.forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+    };
+
+    preloadImages();
+  }, []);
+
   const handleCommand = (key: string) => {
     const k = key.toLowerCase();
     
     if (screenState === "welcome") {
       if (k === "fkvim" || k === "nvim" || k === "neovim") {
-        setScreenState("dashboard");
+        if (imagesLoaded) {
+          setScreenState("dashboard");
+        } else {
+          setScreenState("loading");
+        }
       }
     } else if (screenState === "dashboard") {
       if (k === "i") {
@@ -57,23 +90,23 @@ export const InteractiveTerminal = () => {
     } else if (screenState === "insert") {
       if (k === "escape" || k === "esc") {
         setScreenState("dashboard");
-      } else if (k === " e" || k === "e") {
+      } else if (k === " e") {
         setScreenState("explorer");
-      } else if (k === " /" || k === "/") {
+      } else if (k === " /") {
         setScreenState("search");
-      } else if (k === " //" || k === "//") {
+      } else if (k === " //") {
         setScreenState("grep");
+      } else if (k === ":q") {
+        setScreenState("welcome");
       }
     } else if (screenState === "explorer" || screenState === "search" || screenState === "grep") {
-      if (k === "escape" || k === "esc") {
-        setScreenState("dashboard");
+      if (k === "escape" || k === "esc" || k === " e" || k === ":q") {
+        setScreenState("insert");
       } else if (k === "i") {
         setScreenState("insert");
-      } else if (k === " e" || k === "e") {
-        setScreenState("explorer");
-      } else if (k === " /" || k === "/") {
+      } else if (k === " /") {
         setScreenState("search");
-      } else if (k === " //" || k === "//") {
+      } else if (k === " //") {
         setScreenState("grep");
       }
     }
@@ -81,16 +114,29 @@ export const InteractiveTerminal = () => {
     setCurrentInput("");
   };
 
+  // Auto-transition from loading to dashboard when images are ready
+  useEffect(() => {
+    if (screenState === "loading" && imagesLoaded) {
+      const timer = setTimeout(() => {
+        setScreenState("dashboard");
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [screenState, imagesLoaded]);
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (screenState === "welcome") {
       if (e.key === "Enter" && currentInput.trim()) {
         handleCommand(currentInput.trim());
       }
+    } else if (screenState === "loading") {
+      // Ignore input during loading
+      e.preventDefault();
     } else {
       // For other states, respond to immediate key presses
       if (e.key === "Escape") {
         handleCommand("escape");
-      } else if (e.key === "i") {
+      } else if (e.key === "i" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
         e.preventDefault();
         handleCommand("i");
       } else if (e.key === "e" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
@@ -99,6 +145,12 @@ export const InteractiveTerminal = () => {
       } else if (e.key === "/" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
         e.preventDefault();
         handleCommand("/");
+      } else if (e.key === ":" && !e.shiftKey && !e.ctrlKey && !e.altKey) {
+        e.preventDefault();
+        setCurrentInput(":");
+      } else if (e.key === "q" && currentInput === ":") {
+        e.preventDefault();
+        handleCommand(":q");
       } else if (e.key === " ") {
         e.preventDefault();
         const nextChar = currentInput;
@@ -136,6 +188,10 @@ export const InteractiveTerminal = () => {
       return "Type: fkvim, nvim, or neovim to start";
     } else if (screenState === "dashboard") {
       return "Press: i for Insert Mode";
+    } else if (screenState === "insert") {
+      return "Press: Space+e (Explorer) | Space+/ (Search) | Space+// (Buffer Search) | :q (Quit)";
+    } else if (screenState === "explorer" || screenState === "search" || screenState === "grep") {
+      return "Press: Space+e or :q (Close) | Esc (Close) | Space+/ (Search)";
     } else {
       return "Press: Esc (Dashboard) | i (Insert) | Space+e (Explorer) | Space+/ (Search)";
     }
@@ -189,6 +245,13 @@ export const InteractiveTerminal = () => {
                   spellCheck={false}
                   placeholder="Type command here..."
                 />
+              </div>
+            </div>
+          ) : screenState === "loading" ? (
+            <div className="flex items-center justify-center h-full">
+              <div className="flex flex-col items-center gap-4">
+                <Loader2 className="h-12 w-12 text-primary animate-spin" />
+                <p className="text-muted-foreground text-lg">Loading FKvim...</p>
               </div>
             </div>
           ) : (
