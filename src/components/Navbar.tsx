@@ -32,10 +32,10 @@ const Navbar = () => {
               <a href="https://fkvim.netlify.app/docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
                 Docs
               </a>
-              <Link to="/interactive" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2">
+              <a href="https://fkvim-playground.lovable.app/" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2">
                 Try FKvim Interactive
                 <Badge variant="default" className="text-xs px-2 py-0 animate-pulse">New</Badge>
-              </Link>
+              </a>
             </div>
 
             <div className="hidden lg:block">
