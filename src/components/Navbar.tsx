@@ -1,6 +1,8 @@
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { Terminal, Github } from "lucide-react";
 import { Link } from "react-router-dom";
+import { SearchCommand } from "@/components/SearchCommand";
 
 const Navbar = () => {
   return (
@@ -29,9 +31,14 @@ const Navbar = () => {
             <Link to="/docs" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
               Docs
             </Link>
-            <Link to="/docs/quick-start" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors">
+            <Link to="/docs/quick-start" className="text-sm font-medium text-foreground/80 hover:text-foreground transition-colors inline-flex items-center gap-2">
               Try FKvim Interactive
+              <Badge variant="default" className="text-xs px-2 py-0">New</Badge>
             </Link>
+          </div>
+
+          <div className="flex-1 max-w-md mx-8 hidden lg:block">
+            <SearchCommand />
           </div>
 
           <div className="flex items-center gap-4">
