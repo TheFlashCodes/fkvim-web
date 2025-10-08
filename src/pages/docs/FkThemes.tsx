@@ -1,5 +1,7 @@
 import DocsLayout from "@/components/DocsLayout";
 import TableOfContents from "@/components/TableOfContents";
+import DocsNavigation from "@/components/DocsNavigation";
+import { getNavigation } from "@/config/docsNavigation";
 import TerminalCodeBlock from "@/components/TerminalCodeBlock";
 import { Card, CardContent } from "@/components/ui/card";
 import { Palette, Sparkles, Eye, Zap, ExternalLink } from "lucide-react";
@@ -13,9 +15,11 @@ const tocItems = [
 ];
 
 const FkThemes = () => {
+  const { previous, next } = getNavigation("/docs/plugins/fkthemes");
+  
   return (
     <DocsLayout tableOfContents={<TableOfContents items={tocItems} />}>
-      <div className="max-w-4xl mx-auto px-8 py-12">
+      <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8 sm:py-12">
           <div className="space-y-2 mb-8">
             <h1 className="text-5xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
               FkThemes
@@ -155,6 +159,8 @@ const FkThemes = () => {
               />
             </section>
           </div>
+          
+          <DocsNavigation previous={previous} next={next} />
         </div>
     </DocsLayout>
   );
