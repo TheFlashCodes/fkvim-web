@@ -34,7 +34,7 @@ const DocsNavigation = ({ previous, next }: DocsNavigationProps) => {
                   <previous.icon className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs text-muted-foreground mb-1 group-hover:text-primary">{previous.section}</p>
+                  <p className="text-xs mb-1 group-hover:text-primary">{previous.section}</p>
                   <p className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
                     {previous.title}
                   </p>
@@ -61,7 +61,7 @@ const DocsNavigation = ({ previous, next }: DocsNavigationProps) => {
               </div>
               <div className="flex items-start gap-3">
                 <div className="flex-1 min-w-0 text-right">
-                  <p className="text-xs text-muted-foreground mb-1 group-hover:text-primary">{next.section}</p>
+                  <p className="text-xs mb-1 group-hover:text-primary">{next.section}</p>
                   <p className="font-semibold text-foreground group-hover:text-secondary transition-colors truncate">
                     {next.title}
                   </p>
