@@ -51,7 +51,7 @@ const DocsNavigation = ({ previous, next }: DocsNavigationProps) => {
       {next && (
         <Link to={next.path} className="group">
           <Card className={cn(
-            "h-full bg-card/50 border-border hover:border-secondary/50 transition-all duration-300 hover:shadow-lg hover:shadow-secondary/10",
+            "h-full bg-card/50 border-border hover:border-primary/50 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10",
             !previous && "sm:col-start-2"
           )}>
             <CardContent className="p-6 h-full flex flex-col justify-between">
