@@ -8,95 +8,98 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
+    --background: 230 25% 6%;
+    --foreground: 210 40% 98%;
 
-    --card: 240 10% 5.9%;
-    --card-foreground: 0 0% 98%;
+    --card: 230 20% 10%;
+    --card-foreground: 210 40% 98%;
 
-    --popover: 240 10% 5.9%;
-    --popover-foreground: 0 0% 98%;
+    --popover: 230 25% 8%;
+    --popover-foreground: 210 40% 98%;
 
-    --primary: 263 70% 64%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 260 80% 65%;
+    --primary-foreground: 210 40% 98%;
 
-    --secondary: 217 91% 60%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 230 20% 15%;
+    --secondary-foreground: 210 40% 98%;
 
-    --muted: 240 5% 15%;
-    --muted-foreground: 240 5% 64%;
+    --muted: 230 20% 15%;
+    --muted-foreground: 215 16% 60%;
 
-    --accent: 142 76% 56%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 195 80% 60%;
+    --accent-foreground: 230 25% 6%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 70% 60%;
+    --destructive-foreground: 210 40% 98%;
 
-    --border: 240 10% 15%;
-    --input: 240 10% 15%;
-    --ring: 263 70% 64%;
+    --border: 230 20% 20%;
+    --input: 230 20% 15%;
+    --ring: 260 80% 65%;
+
+    --success: 160 80% 50%;
+    --warning: 40 90% 60%;
+    --info: 210 90% 65%;
+
+    --terminal-bg: 230 25% 8%;
+    --terminal-border: 230 20% 20%;
+    --terminal-text: 210 40% 98%;
+    --terminal-cursor: 260 80% 65%;
+
+    --gradient-fkvim: linear-gradient(135deg, hsl(280 80% 65%) 0%, hsl(210 90% 65%) 50%, hsl(160 80% 60%) 100%);
+    --gradient-hero: linear-gradient(180deg, hsl(230 25% 6%) 0%, hsl(240 30% 10%) 100%);
+    --gradient-radial-glow: radial-gradient(ellipse 80% 50% at 50% -20%, hsl(260 80% 65% / 0.15), transparent);
+
+    --shadow-glow: 0 0 40px hsl(260 80% 65% / 0.4);
+    --shadow-glow-lg: 0 0 80px hsl(260 80% 65% / 0.3), 0 0 120px hsl(210 90% 65% / 0.2);
+    --shadow-terminal: 0 10px 50px hsl(0 0% 0% / 0.5);
 
     --radius: 0.75rem;
-
-    --gradient-primary: linear-gradient(135deg, hsl(263 70% 64% / 0.2), hsl(217 91% 60% / 0.2));
-    --gradient-glow: radial-gradient(circle at 50% 0%, hsl(263 70% 64% / 0.15), transparent 70%);
-    --shadow-glow: 0 0 40px hsl(263 70% 64% / 0.3);
-    --shadow-glow-secondary: 0 0 40px hsl(217 91% 60% / 0.3);
   }
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   * {
     @apply border-border;
   }
 
   body {
     @apply bg-background text-foreground;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
-  code {
-    @apply font-mono;
+  /* Custom Scrollbar Styles */
+  ::-webkit-scrollbar {
+    width: 8px; /* Changed from 12px to 8px */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--primary));
+    border-radius: 6px;
+    border: 3px solid hsl(var(--background));
+  }
+
+  /* For Firefox */
+  html {
+    scrollbar-color: hsl(var(--primary)) hsl(var(--background));
+    scrollbar-width: thin;
   }
 }
 
 @layer utilities {
-  .gradient-primary {
-    background: var(--gradient-primary);
+  .gradient-button {
+    @apply bg-gradient-main;
   }
-  
-  .gradient-glow {
-    background: var(--gradient-glow);
+  .gradient-button:hover {
+    @apply bg-gradient-hover;
   }
-  
-  .glow-primary {
-    box-shadow: var(--shadow-glow);
+  .text-gradient {
+    @apply bg-gradient-main bg-clip-text text-transparent;
   }
-  
-  .glow-secondary {
-    box-shadow: var(--shadow-glow-secondary);
-  }
-}
-
-/* Custom Scrollbar */
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: hsl(var(--background));
-}
-
-::-webkit-scrollbar-thumb {
-  background: hsl(var(--primary));
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: hsl(var(--secondary));
-}
-
-/* Smooth Scroll */
-html {
-  scroll-behavior: smooth;
 }
