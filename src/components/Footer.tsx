@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="container px-4 sm:px-6 py-8 sm:py-12">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+            <h3 className="text-lg font-semibold text-gradient">
               FKvim
             </h3>
             <p className="text-sm text-muted-foreground">
