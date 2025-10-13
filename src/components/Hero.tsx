@@ -94,7 +94,7 @@ const Hero = () => {
 
           {/* Main Heading */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight px-4">
-            <span className="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+            <span className="text-gradient">
               Modern Neovim IDE
             </span>
             <br />
@@ -109,7 +109,7 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 w-full px-4">
-            <Button size="lg" className="bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity glow-primary px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base w-full sm:w-auto" asChild>
+            <Button size="lg" className="bg-gradient-to-r from-teal-400 to-blue-500 transition-all duration-300 ease-in-out hover:scale-105 glow-primary px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base w-full sm:w-auto" asChild>
               <Link to="/docs/installation">
                 <Terminal className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
                 Get Started
@@ -157,8 +157,8 @@ const Hero = () => {
                   {/* Step 2: Success checkmark */}
                   {animationStep >= 2 && (
                     <div className="flex items-center gap-2 mb-2 animate-fade-in">
-                      <Check className="h-4 w-4 text-accent" />
-                      <span className="text-accent">FKvim successfully installed</span>
+                      <Check className="h-4 w-4 text-emerald-500" />
+                      <span className="text-green-500">FKvim successfully installed</span>
                     </div>
                   )}
 
