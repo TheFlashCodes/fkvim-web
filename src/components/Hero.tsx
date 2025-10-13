@@ -198,15 +198,17 @@ const Hero = () => {
                   >
                     <CarouselContent>
                       {screenshots.map((screenshot, index) => (
-                        <CarouselItem key={index}>
-                          <div className="bg-background/50 h-[348px] sm:h-[448px] md:h-[548px] flex flex-col items-center justify-center px-4">
-                            <img src={screenshot.image} alt={screenshot.title} className="max-h-full max-w-full object-contain" />
-                            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-2 sm:mb-3 text-center mt-4">
-                              {screenshot.title}
-                            </h3>
-                            <p className="text-muted-foreground text-center text-sm sm:text-base md:text-lg">
-                              {screenshot.description}
-                            </p>
+                        <CarouselItem key={index} className="group">
+                          <div className="relative w-full h-[348px] sm:h-[448px] md:h-[548px]">
+                            <img src={screenshot.image} alt={screenshot.title} className="w-full h-full object-cover" />
+                            <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center p-4 text-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                              <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-2 sm:mb-3">
+                                {screenshot.title}
+                              </h3>
+                              <p className="text-muted-foreground text-center text-sm sm:text-base md:text-lg">
+                                {screenshot.description}
+                              </p>
+                            </div>
                           </div>
                         </CarouselItem>
                       ))}
