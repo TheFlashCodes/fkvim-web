@@ -19,7 +19,7 @@ const DocsNavigation = ({ previous, next }: DocsNavigationProps) => {
   if (!previous && !next) return null;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12 pt-8 border-t border-border">
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-12 pt-8 pb-12 border-t border-border">
       {/* Previous Page */}
       {previous ? (
         <Link to={previous.path} className="group">
