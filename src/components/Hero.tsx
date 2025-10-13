@@ -81,14 +81,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden h-full">
-      {/* Gradient Glow Background */}
-      <div className="absolute inset-0 gradient-glow opacity-50" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-primary/5 via-transparent to-transparent" />
-      
-      {/* Grid Pattern */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:4rem_4rem]" />
-
+    <section className="absolute inset-0 flex items-center justify-center overflow-hidden">
       <div className="container relative z-10 px-6 py-32">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           {/* Badge */}

@@ -10,8 +10,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        <div style={{ width: '100%', height: '600px', position: 'relative' }}>
-          <Hero />
+        <div style={{ width: '100%', minHeight: '100vh', position: 'relative' }}>
           <Prism
             animationType="rotate"
             timeScale={0.5}
@@ -23,6 +22,7 @@ const Index = () => {
             noise={0.5}
             glow={1}
           />
+          <Hero />
         </div>
         <Features />
         <Installation />
