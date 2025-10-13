@@ -1,11 +1,20 @@
+
 import { useState, useEffect, useRef } from "react";
 import { cn } from "@/lib/utils";
 import dashboardImg from "@/assets/fkvim-dashboard.png";
 import editorImg from "@/assets/fkvim-editor.png";
 import explorerImg from "@/assets/fkvim-explorer.png";
 import finderImg from "@/assets/fkvim-finder.png";
+import searchImg from "@/assets/fkvim-search.png"; // 🆕 new import
 
-type TerminalState = "welcome" | "quit" | "dashboard" | "editor" | "explorer" | "finder";
+type TerminalState =
+  | "welcome"
+  | "quit"
+  | "dashboard"
+  | "editor"
+  | "explorer"
+  | "finder"
+  | "search"; // 🆕 new state
 
 export const Terminal = () => {
   const [state, setState] = useState<TerminalState>("welcome");
@@ -39,14 +48,19 @@ export const Terminal = () => {
   useEffect(() => {
     const handleKeyPress = (e: KeyboardEvent) => {
       // Handle :q command
-      if (e.key === ":" && (state === "editor" || state === "dashboard" || state === "explorer" || state === "finder")) {
+      if (
+        e.key === ":" &&
+        (state === "editor" ||
+          state === "dashboard" ||
+          state === "explorer" ||
+          state === "finder" ||
+          state === "search")
+      ) {
         e.preventDefault();
         const handleQ = (ev: KeyboardEvent) => {
           ev.preventDefault();
           if (ev.key === "q") {
-            if (state === "explorer") {
-              setState("editor");
-            } else if (state === "finder") {
+            if (state === "explorer" || state === "finder" || state === "search") {
               setState("editor");
             } else {
               setState("quit");
@@ -59,21 +73,45 @@ export const Terminal = () => {
         return;
       }
 
+      // From dashboard: go to editor
       if (state === "dashboard" && e.key === "i") {
         setState("editor");
-      } else if (state === "editor" || state === "explorer" || state === "finder") {
+      }
+
+      // Editor / Explorer / Finder / Search keybindings
+      else if (
+        state === "editor" ||
+        state === "explorer" ||
+        state === "finder" ||
+        state === "search"
+      ) {
         if (e.key === " ") {
           e.preventDefault(); // Prevent page scroll
-          // Wait for next key
+
           const handleSpace = (ev: KeyboardEvent) => {
             ev.preventDefault();
+
             if (ev.key === "e") {
               setState(state === "explorer" ? "editor" : "explorer");
             } else if (ev.key === "/") {
+              // Wait for possible second slash
+              const handleSecondSlash = (ev2: KeyboardEvent) => {
+                ev2.preventDefault();
+                if (ev2.key === "/") {
+                  setState(state === "search" ? "editor" : "search");
+                }
+                window.removeEventListener("keydown", handleSecondSlash);
+              };
+              window.addEventListener("keydown", handleSecondSlash);
+              setTimeout(() => window.removeEventListener("keydown", handleSecondSlash), 600);
+
+              // Single slash = finder
               setState(state === "finder" ? "editor" : "finder");
             }
+
             window.removeEventListener("keydown", handleSpace);
           };
+
           window.addEventListener("keydown", handleSpace);
           setTimeout(() => window.removeEventListener("keydown", handleSpace), 1000);
         }
@@ -91,13 +129,10 @@ export const Terminal = () => {
       setIsLoading(true);
       setLoadingDots("");
       setInput("");
-      
-      // Show loading animation briefly
+
       setTimeout(() => {
         setIsLoading(false);
         setShowSuccess(true);
-        
-        // Show success message then transition to dashboard
         setTimeout(() => {
           setShowSuccess(false);
           setState("dashboard");
@@ -107,7 +142,6 @@ export const Terminal = () => {
   };
 
   const renderContent = () => {
-    // Loading state
     if (isLoading) {
       return (
         <div className="space-y-4">
@@ -134,7 +168,6 @@ export const Terminal = () => {
       );
     }
 
-    // Success state
     if (showSuccess) {
       return (
         <div className="space-y-4">
@@ -165,43 +198,16 @@ export const Terminal = () => {
 
     switch (state) {
       case "welcome":
-        return (
-          <div className="space-y-4">
-            <div className="text-terminal-text font-mono text-sm">
-              <div className="flex items-center gap-2">
-                <span className="text-success">→</span>
-                <span>Welcome to FKvim Interactive Demo</span>
-              </div>
-              <div className="mt-4 text-muted-foreground">
-                Type <span className="text-primary font-semibold">fkvim</span>,{" "}
-                <span className="text-primary font-semibold">nvim</span>, or{" "}
-                <span className="text-primary font-semibold">neovim</span> to get started
-              </div>
-            </div>
-            <form onSubmit={handleSubmit} className="flex items-center gap-2 mt-6">
-              <span className="text-success">→</span>
-              {showCursor && !input && <span className="w-2 h-4 bg-terminal-cursor animate-pulse" />}
-              <input
-                ref={inputRef}
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                className="flex-1 bg-transparent border-none outline-none text-terminal-text font-mono"
-                autoFocus
-                spellCheck={false}
-              />
-            </form>
-          </div>
-        );
       case "quit":
         return (
           <div className="space-y-4">
             <div className="text-terminal-text font-mono text-sm">
               <div className="flex items-center gap-2">
                 <span className="text-success">→</span>
-                <span className="text-success">FKvim quit successfully</span>
+                <span>
+                  {state === "quit" ? "FKvim quit successfully" : "Welcome to FKvim Interactive Demo"}
+                </span>
               </div>
-              <div className="mt-4">Welcome to FKvim Interactive Demo</div>
               <div className="mt-4 text-muted-foreground">
                 Type <span className="text-primary font-semibold">fkvim</span>,{" "}
                 <span className="text-primary font-semibold">nvim</span>, or{" "}
@@ -223,6 +229,7 @@ export const Terminal = () => {
             </form>
           </div>
         );
+
       case "dashboard":
         return (
           <div className="relative group h-full w-full animate-fade-in">
@@ -235,6 +242,7 @@ export const Terminal = () => {
             </div>
           </div>
         );
+
       case "editor":
         return (
           <div className="relative group h-full w-full animate-fade-in">
@@ -246,12 +254,16 @@ export const Terminal = () => {
                   <kbd className="px-2 py-1 bg-secondary rounded text-primary">e</kbd> for file explorer • 
                   <kbd className="px-2 py-1 bg-secondary rounded text-primary ml-2">Space</kbd> +{" "}
                   <kbd className="px-2 py-1 bg-secondary rounded text-primary">/</kbd> for fuzzy finder • 
+                  <kbd className="px-2 py-1 bg-secondary rounded text-primary ml-2">Space</kbd> +{" "}
+                  <kbd className="px-2 py-1 bg-secondary rounded text-primary">/</kbd> +{" "}
+                  <kbd className="px-2 py-1 bg-secondary rounded text-primary">/</kbd> for search • 
                   <kbd className="px-2 py-1 bg-secondary rounded text-primary ml-2">:q</kbd> to quit
                 </div>
               </div>
             </div>
           </div>
         );
+
       case "explorer":
         return (
           <div className="relative group h-full w-full animate-fade-in">
@@ -265,6 +277,7 @@ export const Terminal = () => {
             </div>
           </div>
         );
+
       case "finder":
         return (
           <div className="relative group h-full w-full animate-fade-in">
@@ -272,6 +285,25 @@ export const Terminal = () => {
             <div className="absolute bottom-0 left-0 right-0 bg-background/90 backdrop-blur-sm p-3 border-t border-terminal-border opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <div className="text-sm font-mono text-muted-foreground">
                 <kbd className="px-2 py-1 bg-secondary rounded text-primary">Space</kbd> +{" "}
+                <kbd className="px-2 py-1 bg-secondary rounded text-primary">/</kbd> or{" "}
+                <kbd className="px-2 py-1 bg-secondary rounded text-primary">:q</kbd> to return to editor
+              </div>
+            </div>
+          </div>
+        );
+
+      case "search":
+        return (
+          <div className="relative group h-full w-full animate-fade-in">
+            <img
+              src={searchImg}
+              alt="FKvim Search"
+              className="w-full h-full object-cover transition-opacity duration-300"
+            />
+            <div className="absolute bottom-0 left-0 right-0 bg-background/90 backdrop-blur-sm p-3 border-t border-terminal-border opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="text-sm font-mono text-muted-foreground">
+                <kbd className="px-2 py-1 bg-secondary rounded text-primary">Space</kbd> +{" "}
+                <kbd className="px-2 py-1 bg-secondary rounded text-primary">/</kbd> +{" "}
                 <kbd className="px-2 py-1 bg-secondary rounded text-primary">/</kbd> or{" "}
                 <kbd className="px-2 py-1 bg-secondary rounded text-primary">:q</kbd> to return to editor
               </div>
@@ -302,10 +334,16 @@ export const Terminal = () => {
       </div>
 
       {/* Terminal Content */}
-      <div className={cn(
-        "flex flex-col",
-        (state === "welcome" || state === "quit" || isLoading || showSuccess) ? "p-6 min-h-[600px]" : "min-h-[600px]"
-      )}>{renderContent()}</div>
+      <div
+        className={cn(
+          "flex flex-col",
+          state === "welcome" || state === "quit" || isLoading || showSuccess
+            ? "p-6 min-h-[600px]"
+            : "min-h-[600px]"
+        )}
+      >
+        {renderContent()}
+      </div>
     </div>
   );
 };
