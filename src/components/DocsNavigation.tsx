@@ -35,7 +35,7 @@ const DocsNavigation = ({ previous, next }: DocsNavigationProps) => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-xs mb-1 group-hover:text-primary">{previous.section}</p>
-                  <p className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
+                  <p className="font-semibold group-hover:text-primary transition-colors truncate">
                     {previous.title}
                   </p>
                 </div>
