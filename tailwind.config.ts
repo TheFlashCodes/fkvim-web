@@ -47,10 +47,29 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        success: "hsl(var(--success))",
+        warning: "hsl(var(--warning))",
+        info: "hsl(var(--info))",
+        terminal: {
+          bg: "hsl(var(--terminal-bg))",
+          border: "hsl(var(--terminal-border))",
+          text: "hsl(var(--terminal-text))",
+          cursor: "hsl(var(--terminal-cursor))",
+        },
+      },
+      backgroundImage: {
+        "gradient-main": "linear-gradient(to right, #A020F0, #00BFFF, #32CD32)",
+        "gradient-hover": "linear-gradient(to right, #A020F0, #00BFFF, #32CD32)",
+        "gradient-navbar": "linear-gradient(to right, #6366f1, #a855f7, #ec4899)",
+      },
+      boxShadow: {
+        glow: "var(--shadow-glow)",
+        "glow-lg": "var(--shadow-glow-lg)",
+        terminal: "var(--shadow-terminal)",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "monospace"],
+        mono: ["JetBrains Mono", "Consolas", "Monaco", "Courier New", "monospace"],
       },
       borderRadius: {
         lg: "var(--radius)",
