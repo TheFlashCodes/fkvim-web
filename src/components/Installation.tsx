@@ -22,7 +22,7 @@ const Installation = () => {
           <div className="text-center space-y-3 sm:space-y-4">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold px-4">
               Get started in{" "}
-              <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <span className="text-gradient">
                 seconds
               </span>
             </h2>
