@@ -27,14 +27,14 @@ const DocsNavigation = ({ previous, next }: DocsNavigationProps) => {
             <CardContent className="p-6 h-full flex flex-col justify-between">
               <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
                 <ChevronLeft className="h-3 w-3" />
-                <span className="uppercase tracking-wide">Previous</span>
+                <span className="uppercase tracking-wide group-hover:text-primary">Previous</span>
               </div>
               <div className="flex items-start gap-3">
                 <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
                   <previous.icon className="h-5 w-5 text-primary" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs text-muted-foreground mb-1">{previous.section}</p>
+                  <p className="text-xs text-muted-foreground mb-1 group-hover:text-primary">{previous.section}</p>
                   <p className="font-semibold text-foreground group-hover:text-primary transition-colors truncate">
                     {previous.title}
                   </p>
@@ -56,12 +56,12 @@ const DocsNavigation = ({ previous, next }: DocsNavigationProps) => {
           )}>
             <CardContent className="p-6 h-full flex flex-col justify-between">
               <div className="flex items-center justify-end gap-2 text-xs text-muted-foreground mb-2">
-                <span className="uppercase tracking-wide">Next</span>
+                <span className="uppercase tracking-wide group-hover:text-primary">Next</span>
                 <ChevronRight className="h-3 w-3" />
               </div>
               <div className="flex items-start gap-3">
                 <div className="flex-1 min-w-0 text-right">
-                  <p className="text-xs text-muted-foreground mb-1">{next.section}</p>
+                  <p className="text-xs text-muted-foreground mb-1 group-hover:text-primary">{next.section}</p>
                   <p className="font-semibold text-foreground group-hover:text-secondary transition-colors truncate">
                     {next.title}
                   </p>
