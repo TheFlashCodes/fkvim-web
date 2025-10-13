@@ -11,22 +11,19 @@ const Index = () => {
     <div className="min-h-screen">
       <Navbar />
       <main>
-        <div style={{ width: '100%', minHeight: '100vh', position: 'relative' }}>
-          <div style={{ position: 'absolute', inset: 0 }}>
-            <Prism
-              animationType="rotate"
-              timeScale={0.5}
-              height={3.5}
-              baseWidth={5.5}
-              scale={3.6}
-              hueShift={0}
-              colorFrequency={1}
-              noise={0} // Changed from 0.5 to 0 for a smoother background
-              glow={1}
-            />
-          </div>
-          <Hero />
-        </div>
+        <Hero>
+          <Prism
+            animationType="rotate"
+            timeScale={0.5}
+            height={3.5}
+            baseWidth={5.5}
+            scale={3.6}
+            hueShift={0}
+            colorFrequency={1}
+            noise={0}
+            glow={1}
+          />
+        </Hero>
         <TerminalSection /> {/* New component */}
         <Features />
         <Installation />
