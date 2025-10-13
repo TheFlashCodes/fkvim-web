@@ -66,7 +66,7 @@ const DocsNavigation = ({ previous, next }: DocsNavigationProps) => {
                     {next.title}
                   </p>
                 </div>
-                <div className="w-10 h-10 rounded-lg bg-accent/20 flex items-center justify-center flex-shrink-0 group-hover:bg-accent/30 transition-colors">
+                <div className="w-10 h-10 rounded-lg bg-primary/20 flex items-center justify-center flex-shrink-0 group-hover:bg-primary/30 transition-colors">
                   <next.icon className="h-5 w-5 text-primary" />
                 </div>
               </div>
