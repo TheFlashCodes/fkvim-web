@@ -1,66 +1,21 @@
-import { Button } from "@/components/ui/button";
 import { Terminal, Github, Zap, Loader2, Check } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Github, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
-
-const Hero = () => {
-  return (
-    <section className="relative flex items-center justify-center overflow-hidden bg-white/5 backdrop-blur-sm">
-      <div className="container relative z-10 px-6 py-32 text-white">
-        <div className="max-w-4xl mx-auto text-center space-y-8">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-primary/20 backdrop-blur-sm">
-            <Zap className="mr-2 h-4 w-4 text-accent" />
-            <span className="text-sm font-medium">Part of the FKvim Ecosystem</span>
-          </div>
-
-          {/* Main Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight px-4">
-            <span className="text-gradient">
-              Modern Neovim IDE
-            </span>
-            <br />
-            <span className="text-foreground">for Developers</span>
-          </h1>
-
-          {/* Description */}
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
-            A blazingly fast, feature-rich Neovim configuration that transforms your editor into a powerful IDE. 
-            Built for productivity and aesthetics.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 w-full px-4">
-            <Button size="lg" className="bg-gradient-to-r from-teal-400 to-blue-500 transition-all duration-300 ease-in-out hover:scale-105 glow-primary px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base w-full sm:w-auto" asChild>
-              <Link to="/docs/installation">
-                <Terminal className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
-                Get Started
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10 px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base w-full sm:w-auto" asChild>
-              <a href="https://github.com/TheFlashCodes/FKvim" target="_blank" rel="noopener noreferrer">
-                <Github className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
-                View on GitHub
-              </a>
-            </Button>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-};
-
-export default Hero;
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import type { CarouselApi } from "@/components/ui/carousel";
 
 import dashboardImg from "../assets/fkvim-dashboard.png";
 import editorImg from "../assets/fkvim-editor.png";
 import explorerImg from "../assets/fkvim-explorer.png";
 import finderImg from "../assets/fkvim-finder.png";
 
-const Hero = () => {
+const TerminalSection = () => {
   const [animationStep, setAnimationStep] = useState(0);
   const [typedCommand, setTypedCommand] = useState("");
   const [api, setApi] = useState<CarouselApi>();
@@ -125,47 +80,10 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden bg-white/5 backdrop-blur-sm">
-      <div className="container relative z-10 px-6 py-32 text-white">
+    <section className="py-16 sm:py-24 lg:py-32 bg-background">
+      <div className="container relative z-10 px-6">
         <div className="max-w-4xl mx-auto text-center space-y-8">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/50 border border-primary/20 backdrop-blur-sm">
-            <Zap className="h-4 w-4 text-accent" />
-            <span className="text-sm font-medium">Part of the FKvim Ecosystem</span>
-          </div>
-
-          {/* Main Heading */}
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight px-4">
-            <span className="text-gradient">
-              Modern Neovim IDE
-            </span>
-            <br />
-            <span className="text-foreground">for Developers</span>
-          </h1>
-
-          {/* Description */}
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed px-4">
-            A blazingly fast, feature-rich Neovim configuration that transforms your editor into a powerful IDE. 
-            Built for productivity and aesthetics.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 pt-4 w-full px-4">
-            <Button size="lg" className="bg-gradient-to-r from-teal-400 to-blue-500 transition-all duration-300 ease-in-out hover:scale-105 glow-primary px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base w-full sm:w-auto" asChild>
-              <Link to="/docs/installation">
-                <Terminal className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
-                Get Started
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-primary/30 hover:bg-primary/10 px-6 sm:px-8 h-11 sm:h-12 text-sm sm:text-base w-full sm:w-auto" asChild>
-              <a href="https://github.com/TheFlashCodes/FKvim" target="_blank" rel="noopener noreferrer">
-                <Github className="mr-2 h-4 sm:h-5 w-4 sm:w-5" />
-                View on GitHub
-              </a>
-            </Button>
-          </div>
-
-          {/* Interactive Terminal Preview */}
+          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-foreground mb-8">Interactive Terminal Preview</h2>
           <div className="relative mt-12 sm:mt-16 group w-full px-4">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary to-secondary rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-500" />
             <div className={`relative bg-card border border-border rounded-xl overflow-hidden transition-all duration-700 ${animationStep >= 5 ? 'min-h-[400px] sm:min-h-[500px] md:min-h-[600px]' : 'min-h-[100px]'}`}>
@@ -255,4 +173,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default TerminalSection;

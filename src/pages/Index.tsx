@@ -4,6 +4,7 @@ import Features from "@/components/Features";
 import Installation from "@/components/Installation";
 import Footer from "@/components/Footer";
 import Prism from '@/components/Prism';
+import TerminalSection from '@/components/TerminalSection'; // New import
 
 const Index = () => {
   return (
@@ -20,12 +21,13 @@ const Index = () => {
               scale={3.6}
               hueShift={0}
               colorFrequency={1}
-              noise={0.5}
+              noise={0} // Changed from 0.5 to 0 for a smoother background
               glow={1}
             />
           </div>
           <Hero />
         </div>
+        <TerminalSection /> {/* New component */}
         <Features />
         <Installation />
       </main>
