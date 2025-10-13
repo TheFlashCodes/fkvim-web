@@ -11,6 +11,7 @@ const Index = () => {
       <Navbar />
       <main>
         <div style={{ width: '100%', height: '600px', position: 'relative' }}>
+          <Hero />
           <Prism
             animationType="rotate"
             timeScale={0.5}
@@ -23,7 +24,6 @@ const Index = () => {
             glow={1}
           />
         </div>
-        <Hero />
         <Features />
         <Installation />
       </main>
