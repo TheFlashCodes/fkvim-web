@@ -11,6 +11,11 @@ import {
 } from "@/components/ui/carousel";
 import type { CarouselApi } from "@/components/ui/carousel";
 
+import dashboardImg from "../assets/fkvim-dashboard.png";
+import editorImg from "../assets/fkvim-editor.png";
+import explorerImg from "../assets/fkvim-explorer.png";
+import finderImg from "../assets/fkvim-finder.png";
+
 const Hero = () => {
   const [animationStep, setAnimationStep] = useState(0);
   const [typedCommand, setTypedCommand] = useState("");
@@ -69,10 +74,10 @@ const Hero = () => {
   }, [api]);
 
   const screenshots = [
-    { title: "Dashboard View", description: "Beautiful and intuitive interface" },
-    { title: "Code Editor", description: "Powerful LSP integration" },
-    { title: "File Explorer", description: "Fast file navigation" },
-    { title: "Terminal", description: "Integrated terminal" },
+    { title: "Dashboard View", description: "Beautiful and intuitive interface", image: dashboardImg },
+    { title: "Code Editor", description: "Powerful LSP integration", image: editorImg },
+    { title: "File Explorer", description: "Fast file navigation", image: explorerImg },
+    { title: "Terminal", description: "Integrated terminal", image: finderImg },
   ];
 
   return (
@@ -195,8 +200,8 @@ const Hero = () => {
                       {screenshots.map((screenshot, index) => (
                         <CarouselItem key={index}>
                           <div className="bg-background/50 h-[348px] sm:h-[448px] md:h-[548px] flex flex-col items-center justify-center px-4">
-                            <Terminal className="h-16 w-16 sm:h-24 sm:w-24 md:h-32 md:w-32 text-primary mb-4 sm:mb-6" />
-                            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-2 sm:mb-3 text-center">
+                            <img src={screenshot.image} alt={screenshot.title} className="max-h-full max-w-full object-contain" />
+                            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-foreground mb-2 sm:mb-3 text-center mt-4">
                               {screenshot.title}
                             </h3>
                             <p className="text-muted-foreground text-center text-sm sm:text-base md:text-lg">
