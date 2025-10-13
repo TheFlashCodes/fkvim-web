@@ -81,7 +81,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className="absolute inset-0 flex items-center justify-center overflow-hidden">
+    <section className="relative flex items-center justify-center overflow-hidden bg-transparent">
       <div className="container relative z-10 px-6 py-32 text-white">
         <div className="max-w-4xl mx-auto text-center space-y-8">
           {/* Badge */}
